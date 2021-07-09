@@ -25,4 +25,7 @@ fn read_user_name_from_file() -> Result<String, io::Error> {
     f.read_to_string(&mut s)?;
 
     Ok(s)
+
+    // we’re only allowed to use the `?` operator in a function that returns 
+    // `Result` or `Option` or another type that implements `std::ops::Try`.
 }
