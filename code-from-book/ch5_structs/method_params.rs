@@ -5,7 +5,6 @@ struct Rectangle {
 }
 
 impl Rectangle {
-    // passing ownership of struct instance
     fn area(&self) -> u32 {
         self.height * self.width
     }
