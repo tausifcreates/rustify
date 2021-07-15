@@ -9,12 +9,12 @@ fn main() {
 
     let distance: i32 = init_distance(&mut arr, len, desired_sum);
 
-    let index: (usize, usize) = find_pair(&mut arr, len, desired_sum, distance);
+    let values: Option<(i32, i32)> = find_pair(&mut arr, len, desired_sum, distance);
 
-    println!(
-        "Final left index: {}\nFinal right_index: {}",
-        index.0, index.1
-    );
+    match values {
+        Some(v) => println!("First value: {}\nSecond value: {}", v.0, v.1),
+        None => (),
+    }
 }
 
 fn init_distance(arr: &mut Vec<i32>, len: usize, desired_sum: i32) -> i32 {
@@ -40,14 +40,12 @@ fn find_pair(
     len: usize,
     desired_sum: i32,
     mut distance: i32,
-) -> (usize, usize) {
+) -> Option<(i32, i32)> {
     let mut left_index: usize = 0;
 
     let mut right_index: usize = len - 1;
 
-    let mut final_left_index: usize = len;
-
-    let mut final_right_index: usize = len;
+    let mut result: Option<(i32, i32)> = None;
 
     for _ in 0..(len - 2) + 1 {
         let temp_sum: i32 = arr[right_index] + arr[left_index];
@@ -56,8 +54,7 @@ fn find_pair(
 
         if temp_distance.abs() < distance.abs() {
             distance = temp_distance;
-            final_left_index = left_index;
-            final_right_index = right_index;
+            result = Some((arr[left_index], arr[right_index]));
         }
 
         if temp_distance > 0 {
@@ -67,8 +64,9 @@ fn find_pair(
         }
     }
 
-    (final_left_index, final_right_index)
+    result
 }
+
 
 /* -------------------------- Wip --------------------------------
 fn main() {
