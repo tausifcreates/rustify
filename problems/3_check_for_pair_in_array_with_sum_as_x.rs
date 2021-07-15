@@ -50,7 +50,7 @@ fn find_pair(
     let mut final_right_index: usize = len;
 
     for _ in 0..(len - 2) + 1 {
-        let temp_sum = arr[right_index] + arr[left_index];
+        let temp_sum: i32 = arr[right_index] + arr[left_index];
 
         let temp_distance: i32 = desired_sum - temp_sum;
 
