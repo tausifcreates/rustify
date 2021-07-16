@@ -42,8 +42,6 @@ impl<'list> SortedNumbers<'list> {
 
         let len: usize = self.len;
 
-        list.sort();
-
         let mut left_index: usize = 0;
 
         let mut right_index: usize = len - 1;
