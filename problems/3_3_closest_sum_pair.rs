@@ -6,8 +6,6 @@ struct SortedNumbers<'list> {
 
 impl<'list> SortedNumbers<'list> {
     fn new(list: &'list mut Vec<i32>, len: usize) -> Self {
-        list.sort();
-
         SortedNumbers {
             list,
             len,
@@ -69,12 +67,8 @@ impl<'list> SortedNumbers<'list> {
     }
 
     fn result(&self) {
-        match self.pair {
-            Some((first_val, second_val)) => {
-                println!("First value: {}\nSecond value: {}", first_val, second_val)
-            }
-            None => (),
-        }
+        let (first_val, second_val) = self.pair.unwrap();
+        println!("First value: {},\nSecond value: {}", first_val, second_val);
     }
 }
 
@@ -82,6 +76,8 @@ fn main() {
     let mut list: Vec<i32> = vec![12, 4, -5, 7, -9, 8, 11, 1, -3, -5];
 
     let len = list.len();
+
+    list.sort();
 
     let desired_sum: i32 = 16;
 
