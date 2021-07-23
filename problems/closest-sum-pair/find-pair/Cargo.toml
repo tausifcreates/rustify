@@ -1,5 +1,5 @@
 [package]
-name = "closest_sum_pair"
+name = "find-pair"
 version = "0.1.0"
 edition = "2018"
 
