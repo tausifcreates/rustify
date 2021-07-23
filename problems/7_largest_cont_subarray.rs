@@ -1,3 +1,9 @@
+// Program to find the sum of contiguous subarray within a
+// one-dimensional array of numbers that has the largest sum.
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
 struct Elements<'list> {
     list: &'list Vec<i32>,
     len: usize,
