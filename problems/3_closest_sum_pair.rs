@@ -82,6 +82,7 @@ impl<'list> Elements<'list> {
 
 fn main() {}
 
+#[cfg(test)]
 mod tests {
     use super::*;
 
