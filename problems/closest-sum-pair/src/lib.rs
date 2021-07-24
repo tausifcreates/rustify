@@ -40,9 +40,8 @@
 /// \
 /// 4.`pair`: Pair that has the closest sum to `desired_sum`.\
 /// \
-/// 5.`init_distance`: Initialize the distance to a minimum number that
-/// must be overwritten on the first comparison.
-
+/// 5.`init_distance`: Initialize the distance to number that
+/// is always greater than `sum of any two numbers in list - desired sum`.
 pub struct Elements<'list> {
     list: &'list mut Vec<i32>,
     len: usize,
