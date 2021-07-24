@@ -2,7 +2,7 @@
 // Space Complexity: O(1)
 
 pub struct Elements<'list> {
-    list: &'list Vec<i32>,
+    list: &'list mut Vec<i32>,
     len: usize,
     desired_sum: i32,
     pair: Option<(i32, i32)>,
@@ -10,7 +10,7 @@ pub struct Elements<'list> {
 }
 
 impl<'list> Elements<'list> {
-    pub fn new(list: &'list Vec<i32>, len: usize, desired_sum: i32) -> Self {
+    pub fn new(list: &'list mut Vec<i32>, len: usize, desired_sum: i32) -> Self {
         Elements {
             list,
             len,
@@ -18,6 +18,11 @@ impl<'list> Elements<'list> {
             pair: None,
             init_distance: None,
         }
+    }
+
+    pub fn sort_list(&mut self) -> &mut Self {
+        self.list.sort();
+        self
     }
 
     pub fn find_init_distance(&mut self) -> &mut Self {

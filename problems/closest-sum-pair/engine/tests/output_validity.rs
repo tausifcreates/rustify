@@ -5,10 +5,15 @@ mod tests {
     use super::*;
 
     fn setup(list: &mut Vec<i32>, desired_sum: i32, expected_pair: (i32, i32)) {
-        list.sort();
         let len: usize = list.len();
-        let mut elements = Elements::new(&list, len, desired_sum);
-        let pair = elements.find_init_distance().find_pair().result();
+
+        let mut elements: Elements = Elements::new(list, len, desired_sum);
+
+        let pair: (i32, i32) = elements
+            .sort_list()
+            .find_init_distance()
+            .find_pair()
+            .result();
 
         assert_eq!(expected_pair, pair);
     }
