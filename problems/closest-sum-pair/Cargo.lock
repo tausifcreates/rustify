@@ -3,12 +3,5 @@
 version = 3
 
 [[package]]
-name = "engine"
+name = "closest-sum-pair"
 version = "0.1.0"
-
-[[package]]
-name = "find-pair"
-version = "0.1.0"
-dependencies = [
- "engine",
-]
