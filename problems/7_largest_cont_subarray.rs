@@ -54,42 +54,90 @@ impl<'list> Elements<'list> {
 
 fn main() {}
 
+#[cfg(test)]
 mod tests {
     use super::*;
 
+    fn setup(list: &Vec<i32>, expected_sum: i32) {
+        let len: usize = list.len();
+
+        let mut elements: Elements = Elements::new(&list, len);
+
+        let max_sum: i32 = elements.find_max_sum().result();
+
+        assert_eq!(expected_sum, max_sum);
+    }
+
     #[test]
-    fn lcs_sum_validify() {
-        let list1: Vec<i32> = vec![-2, -3, 4, -1, -2, 1, 5, -3];
-        let lcs_sum1: i32 = Elements::new(&list1, list1.len()).find_lcs_sum().result();
+    fn mixed_1() {
+        let list: Vec<i32> = vec![-2, -3, 4, -1, -2, 1, 5, -3];
 
-        let list2: Vec<i32> = vec![5, -4, 13, 6, -9, 11, 0, 3];
-        let lcs_sum2: i32 = Elements::new(&list2, list2.len()).find_lcs_sum().result();
+        let expected_sum: i32 = 7;
 
-        let list3: Vec<i32> = vec![0, 0, 0, 0, 0, 0];
-        let lcs_sum3: i32 = Elements::new(&list3, list3.len()).find_lcs_sum().result();
+        setup(&list, expected_sum);
+    }
 
-        let list4: Vec<i32> = vec![2, 5, 6, 9, 12, 16];
-        let lcs_sum4: i32 = Elements::new(&list4, list4.len()).find_lcs_sum().result();
+    #[test]
+    fn mixed_2() {
+        let list: Vec<i32> = vec![5, -4, 13, 6, -9, 11, 0, 3];
 
-        let list5: Vec<i32> = vec![-2, -5, -5, -11, -14];
-        let lcs_sum5: i32 = Elements::new(&list5, list5.len()).find_lcs_sum().result();
+        let expected_sum: i32 = 25;
 
-        let list6: Vec<i32> = vec![-1, -4, -7, 6, 9, 12];
-        let lcs_sum6: i32 = Elements::new(&list6, list6.len()).find_lcs_sum().result();
+        setup(&list, expected_sum);
+    }
 
-        let list7: Vec<i32> = vec![-1, -1, -1, -1, -1];
-        let lcs_sum7: i32 = Elements::new(&list7, list7.len()).find_lcs_sum().result();
+    #[test]
+    fn mixed_3() {
+        let list: Vec<i32> = vec![-1, -4, -7, 6, 9, 12];
 
-        let list8: Vec<i32> = vec![2, 2, 2, 2, 2];
-        let lcs_sum8: i32 = Elements::new(&list8, list8.len()).find_lcs_sum().result();
+        let expected_sum: i32 = 27;
 
-        assert_eq!(7, lcs_sum1);
-        assert_eq!(25, lcs_sum2);
-        assert_eq!(0, lcs_sum3);
-        assert_eq!(50, lcs_sum4);
-        assert_eq!(-2, lcs_sum5);
-        assert_eq!(27, lcs_sum6);
-        assert_eq!(-1, lcs_sum7);
-        assert_eq!(10, lcs_sum8);
+        setup(&list, expected_sum);
+    }
+
+    #[test]
+    fn all_zero() {
+        let list: Vec<i32> = vec![0, 0, 0, 0, 0, 0];
+
+        let expected_sum: i32 = 0;
+
+        setup(&list, expected_sum);
+    }
+
+    #[test]
+    fn all_positive() {
+        let list: Vec<i32> = vec![2, 5, 6, 9, 12, 16];
+
+        let expected_sum: i32 = 50;
+
+        setup(&list, expected_sum);
+    }
+
+    #[test]
+    fn all_negative() {
+        let list: Vec<i32> = vec![-2, -3, 4, -1, -2, 1, 5, -3];
+
+        let expected_sum: i32 = 7;
+
+        setup(&list, expected_sum);
+    }
+
+    #[test]
+    fn identical_positive() {
+        let list: Vec<i32> = vec![2, 2, 2, 2, 2];
+
+        let expected_sum: i32 = 10;
+
+        setup(&list, expected_sum);
+    }
+
+    #[test]
+    fn identical_negative() {
+        let list: Vec<i32> = vec![-1, -1, -1, -1, -1];
+
+        let expected_sum: i32 = -1;
+
+        setup(&list, expected_sum);
     }
 }
+
