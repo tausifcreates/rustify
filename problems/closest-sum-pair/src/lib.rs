@@ -83,18 +83,13 @@ impl<'list> Elements<'list> {
         self
     }
 
-    /// As we need a value to initialize `distance` variable with,
-    /// we need to figure out the smallest number possible for this.
-    /// This initial value will have no connection with the list,
-    /// so it has to be overwritten on very first comparison.\
+    /// This method finds a number for `init_distance` field so that
+    /// `init_distance ≥ | sum of any pair - desired sum |`\
     /// \
     /// The `find_pair` method tries to minimize the `distance` on
-    /// every comparison. So if the number is big enough, it will be
-    /// replaced with a shorter distance value for *any pair* that
-    /// comes first. Here, `distance = paired sum - desired sum`.\
-    /// \
-    /// This method uses a simple algorithm to find a number that 
-    /// meets the criteria.
+    /// every comparison. So if `init_distance` is big enough, it 
+    /// will be replaced with a shorter distance value for *any pair*
+    /// that comes first.
     pub fn find_init_distance(&mut self) -> &mut Self {
         let list: &Vec<i32> = self.list;
 
