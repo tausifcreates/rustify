@@ -52,7 +52,8 @@ impl<'list> Elements<'list> {
         }
     }
 
-    /// This method finds the max subarray sum.
+    /// This method finds the max subarray sum. If there are multiple
+    /// subarrays with equal sum it selects the subarray that came first.
     pub fn find_max_sum(&mut self) -> &Self {
         let list: &Vec<i32> = self.list;
 
