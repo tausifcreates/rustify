@@ -2,6 +2,8 @@
 name = "closest-sum-pair"
 version = "0.1.0"
 edition = "2018"
+description = "Finds a pair in a list that has the closest sum to a given number"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
