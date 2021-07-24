@@ -97,7 +97,7 @@ impl<'list> Elements<'list> {
     /// assert_eq!(7, max_sum);
     /// ```
     pub fn result(&self) -> i32 {
-        let lcs_sum: i32 = self.max_sum.unwrap();
-        lcs_sum
+        let max_sum: i32 = self.max_sum.unwrap();
+        max_sum
     }
 }
