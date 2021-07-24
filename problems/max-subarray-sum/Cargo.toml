@@ -1,6 +1,6 @@
 [package]
 name = "max_subarray_sum"
-version = "0.1.2"
+version = "0.1.0"
 edition = "2018"
 description = "Finds the maximum subarray sum in a list."
 documentation = "https://docs.rs/max-subarray-sum"
