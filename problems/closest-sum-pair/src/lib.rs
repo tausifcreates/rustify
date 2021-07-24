@@ -11,15 +11,21 @@
 //! ```
 //! use closest_sum_pair::Elements;
 //!
-//! let mut list: Vec<i32> = vec![3 ,5, 7];
+//! let mut list: Vec<i32> = vec![-2, -4, -7, -2, -5, -13, -7];
 //!
 //! let len: usize = list.len();
 //!
-//! let desired_sum: i32 = 9;
+//! let desired_sum: i32 = -1;
 //!
-//! let elements = Elements::new(&mut list, len, desired_sum);
+//! let mut elements = Elements::new(&mut list, len, desired_sum);
 //!
-//! elements.sort_list().find_init_distance().find_pair().result();
+//! let pair: (i32, i32) = elements
+//!     .sort_list()
+//!     .find_init_distance()
+//!     .find_pair()
+//!     .result();
+//!
+//! assert_eq!((-2, -2), pair);
 //! ```
 
 
@@ -78,18 +84,18 @@ impl<'list> Elements<'list> {
         self
     }
 
-    /// This function uses a simple algorithm to find the minimum
-    /// distance from `desired_sum` that will always be greater
-    /// than the distance between sum of any pairs in the vector
-    /// and `desired_sum`.\
-    /// \
-    /// The reason for that is when comparing the sum of pair and
-    /// its distance from the `desired_sum`, we need to overwrite
-    /// the dummy value with what `distance` was initialized with
-    /// actual distance from a pair's sum to `desired_sum`.\
-    /// \
-    /// This method overwrites the `init_distance` attribute of
-    /// the struct.
+    /// As we need a value to initialize `distance` variable with,
+    /// we need to figure outh what's the smallest number possible
+    /// for the purpose. This initial value will have no connection
+    /// with the list itself, so it has to be overwritten with an
+    /// actual distance between **pair sum** and `desired_value` on
+    /// very first iteration of the loop in `find_pair` method.\
+    /// \  
+    /// This method uses a simple algorithm to find a number that 
+    /// will always be greater than the distance between - sum of
+    /// any pairs in the vector, and `desired_sum`, so that the 
+    /// initial value will always be overwritten for whatever pair
+    /// comes first for our comparison purpose.
     pub fn find_init_distance(&mut self) -> &mut Self {
         let list: &Vec<i32> = self.list;
 
@@ -116,8 +122,6 @@ impl<'list> Elements<'list> {
         self
     }
 
-    /// This method finds the pair, overwrites `pair` attribute 
-    /// of the struct.
     pub fn find_pair(&mut self) -> &Self {
         let list: &Vec<i32> = self.list;
 
@@ -153,7 +157,31 @@ impl<'list> Elements<'list> {
         self
     }
 
-    /// Prints the pair and returns it. useful for testing.
+    /// We need to chain `sort_list`, `find_init_distance`, `find_pair`
+    /// and `result` methods to get the desired pair.\
+    /// Here is an example of how to do so:
+    ///
+    /// # Examples
+    /// ```
+    /// use closest_sum_pair::Elements;
+    ///
+    /// let mut list: Vec<i32> = vec![-2, -4, -7, -2, -5, -13, -7];
+    ///
+    /// let len: usize = list.len();
+    ///
+    /// let desired_sum: i32 = -1;
+    ///
+    /// let mut elements = Elements::new(&mut list, len, desired_sum);
+    ///
+    /// let pair: (i32, i32) = elements
+    ///     .sort_list()
+    ///     .find_init_distance()
+    ///     .find_pair()
+    ///     .result();
+    ///
+    /// assert_eq!((-2, -2), pair);
+    /// ```
+
     pub fn result(&self) -> (i32, i32) {
         let (first_val, second_val) = self.pair.unwrap();
         println!("First value: {},\nSecond value: {}", first_val, second_val);

@@ -1,6 +1,6 @@
 [package]
 name = "closest-sum-pair"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2018"
 description = "Finds a pair in a list that has the closest sum to a given number."
 license = "MIT"
