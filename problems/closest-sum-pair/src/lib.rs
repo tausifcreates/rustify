@@ -85,17 +85,17 @@ impl<'list> Elements<'list> {
     }
 
     /// As we need a value to initialize `distance` variable with,
-    /// we need to figure outh what's the smallest number possible
-    /// for the purpose. This initial value will have no connection
-    /// with the list itself, so it has to be overwritten with an
-    /// actual distance between **pair sum** and `desired_value` on
-    /// very first iteration of the loop in `find_pair` method.\
-    /// \  
+    /// we need to figure out the smallest number possible for this.
+    /// This initial value will have no connection with the list,
+    /// so it has to be overwritten on very first comparison.\
+    /// \
+    /// The `find_pair` method tries to minimize the `distance` on
+    /// every comparison. So if the number is big enough, it will be
+    /// replaced with a shorter distance value for *any pair* that
+    /// comes first. Here, `distance = pair sum - desired sum`.\
+    /// \
     /// This method uses a simple algorithm to find a number that 
-    /// will always be greater than the distance between - sum of
-    /// any pairs in the vector, and `desired_sum`, so that the 
-    /// initial value will always be overwritten for whatever pair
-    /// comes first for our comparison purpose.
+    /// meets the criteria.
     pub fn find_init_distance(&mut self) -> &mut Self {
         let list: &Vec<i32> = self.list;
 
@@ -122,6 +122,12 @@ impl<'list> Elements<'list> {
         self
     }
 
+    /// This method runs a loop and tries to minimize the distance
+    /// for every comparison between current distance and sum of
+    /// two numbers in list. It always doesn't check all pairs,
+    /// rather it breaks from the loop and returns from the function
+    /// when `desired_sum` is found, otherwise it will check for every
+    /// possibilities and return the closest sum.
     pub fn find_pair(&mut self) -> &Self {
         let list: &Vec<i32> = self.list;
 
