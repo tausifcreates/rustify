@@ -2,7 +2,11 @@ use engine::Elements;
 use std::io;
 
 fn main() {
-    println!("Press q to quit from the program any time.");
+    println!(
+        "This is a program to find a pair in a list that has
+the closest sum to a given input. If there are multiple choices,
+most distant pair will be resulted out"
+    );
 
     let steps: u32 = turns();
 
