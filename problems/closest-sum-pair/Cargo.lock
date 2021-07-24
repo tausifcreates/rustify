@@ -3,12 +3,12 @@
 version = 3
 
 [[package]]
-name = "algorithm"
+name = "engine"
 version = "0.1.0"
 
 [[package]]
 name = "find-pair"
 version = "0.1.0"
 dependencies = [
- "algorithm",
+ "engine",
 ]

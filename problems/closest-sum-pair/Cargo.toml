@@ -1,2 +1,2 @@
 [workspace]
-members = ["find-pair", "algorithm"]
+members = ["find-pair", "engine"]
