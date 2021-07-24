@@ -1,6 +1,6 @@
 [package]
 name = "closest-sum-pair"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2018"
 description = "Finds a pair in a list that has the closest sum to a given number."
 documentation = "https://docs.rs/closest-sum-pair"

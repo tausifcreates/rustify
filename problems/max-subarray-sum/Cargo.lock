@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "closest-sum-pair"
-version = "0.1.6"
+name = "max-subarray-sum"
+version = "0.1.0"

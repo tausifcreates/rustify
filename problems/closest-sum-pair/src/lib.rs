@@ -190,7 +190,6 @@ impl<'list> Elements<'list> {
 
     pub fn result(&self) -> (i32, i32) {
         let (first_val, second_val) = self.pair.unwrap();
-        println!("First value: {},\nSecond value: {}", first_val, second_val);
         (first_val, second_val)
     }
 }
