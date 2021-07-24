@@ -3,9 +3,10 @@ name = "closest-sum-pair"
 version = "0.1.4"
 edition = "2018"
 description = "Finds a pair in a list that has the closest sum to a given number."
-license = "MIT"
 documentation = "https://docs.rs/closest-sum-pair"
 repository = "https://github.com/Inoshy/rust-book-helper/tree/master/problems/closest-sum-pair"
+license = "MIT"
+keywords = ["algorithm", "numbers"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
