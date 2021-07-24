@@ -1,8 +1,8 @@
 //! # closest_sum_pair
 //!
-//! Finds a pair from a vector of type `i32`, that has the closest sum
-//! to a given number. If there are multiple choices, pair that has most
-//! distance between them is selected.
+//! Finds two numbers in a `Vec<i32>`, that has the closest sum
+//! to a given number. If there are multiple choices, pair that
+//! has most distance between them is selected.
 //!
 //! The algorithm has time complexity of `O(NlogN)` and space complexity
 //! of `O(1)`.
@@ -41,7 +41,7 @@
 /// 4.`pair`: Pair that has the closest sum to `desired_sum`.\
 /// \
 /// 5.`init_distance`: Initialize the distance to a minimum number that
-/// must be overwritten on the first iteration.
+/// must be overwritten on the first comparison.
 
 pub struct Elements<'list> {
     list: &'list mut Vec<i32>,
@@ -52,7 +52,7 @@ pub struct Elements<'list> {
 }
 
 impl<'list> Elements<'list> {
-    /// Returns a new variable of type `Elements`.
+    /// Returns an instance of `Elements`.
     ///
     /// # Examples
     ///
@@ -92,7 +92,7 @@ impl<'list> Elements<'list> {
     /// The `find_pair` method tries to minimize the `distance` on
     /// every comparison. So if the number is big enough, it will be
     /// replaced with a shorter distance value for *any pair* that
-    /// comes first. Here, `distance = pair sum - desired sum`.\
+    /// comes first. Here, `distance = paired sum - desired sum`.\
     /// \
     /// This method uses a simple algorithm to find a number that 
     /// meets the criteria.
@@ -164,8 +164,7 @@ impl<'list> Elements<'list> {
     }
 
     /// We need to chain `sort_list`, `find_init_distance`, `find_pair`
-    /// and `result` methods to get the desired pair.\
-    /// Here is an example of how to do so:
+    /// and `result` methods. The `result` method returns the pair.\
     ///
     /// # Examples
     /// ```
@@ -187,7 +186,6 @@ impl<'list> Elements<'list> {
     ///
     /// assert_eq!((-2, -2), pair);
     /// ```
-
     pub fn result(&self) -> (i32, i32) {
         let (first_val, second_val) = self.pair.unwrap();
         (first_val, second_val)
