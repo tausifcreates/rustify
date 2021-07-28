@@ -1,8 +1,12 @@
 [package]
 name = "elements-frequency"
 version = "0.1.0"
-description = "Finds frequency of unique elements in a list chronologically."
 edition = "2018"
+description = "Finds frequency of unique elements in a list chronologically."
+readme = "README.md"
+repository = "https://github.com/Inoshy/rust-book-helper/tree/master/problems/elements-frequency"
+license = "MIT"
+keywords = ["algorithm", "array"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
