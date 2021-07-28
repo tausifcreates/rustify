@@ -1,41 +1,64 @@
 //! # elements frequency
 //!
-//! Finds frequency of the unique elements present in the list.
+//! Finds frequency table of the unique elements present in the list.
+//! In the table the elements come in "First come first serve" manner,
+//! namingly the order they appear in the list.
+//!
 //! This lbrary can work with any types that implement `Clone`.
-//! So it is expected it will work with `String`, `&str`, `i32` etc.
+//! So it is expected to work with Strings, slices, integers etc.
 //!
 //! ### Quick Example
 //! ```
-//! use elements_frequency::Elements;
+//! use elements_frequency::{Row, Elements};
 //!
-//! let list: Vec<i32> = vec![1, 1, -6, 2, 6, 2, 7, 1];
+//! let list = vec!["hi", "who", "me", "who", "me"];
 //!
-//! let mut elements = Elements::new(list);
+//! let mut elements = Elements::new(&list);
 //!
-//! let result:&Vec<(T, u32)> = elements.find_arbitrary().update_ordered().result();
+//! let frequency_table = elements
+//!     .hash_couple()
+//!     .update_order()
+//!     .result();
+//! 
+//! println!("{:?}", frequency_table);
 //!
-//! let expected: &Vec<(i32, u32)> = &vec![(1, 3), (-6, 1), (2, 2), (6, 1), (7, 1)];
-//!
-//! assert_eq!(expected, result);
+//! //
+//! // [
+//! //    Row { element: "hi", frequency: 1 }, 
+//! //    Row { element: "who", frequency: 2 }, 
+//! //    Row { element: "me", frequency: 2 },
+//! // ]   
+//! //
 //! ```
 
 use std::{collections::HashMap, hash::Hash};
 
-#[derive(PartialEq)]
+/// This struct acts like rows in frequency table, and holds 2 fields,
+/// the element and its frequency.
+#[derive(Debug, PartialEq)]
 pub struct Row<U> {
     pub element: U,
     pub frequency: u32,
 }
 
 impl<U> Row<U> {
+    /// Returns an instance of `Row` struct.
     pub fn new(element: U, frequency: u32) -> Self {
         Row { element, frequency }
     }
 }
 
+/// This struct holds 3 fields:\
+/// 1.`list`: The list itself\
+/// \
+/// 2. `couple_hash`: Elements hashed to their frequency.
+/// they may come unordered when iterated over.\
+/// \
+/// 3. `ordered_table`: This field holds the ordered frequency table.
+#[derive(Debug)]
 pub struct Elements<'list, T> {
     list: &'list Vec<T>,
-    unordered_hash: HashMap<T, u32>,
+    couple_hash: HashMap<T, u32>,
     ordered_table: Vec<Row<T>>,
 }
 
@@ -43,29 +66,31 @@ impl<'list, T> Elements<'list, T>
 where
     T: Clone + Hash + Eq,
 {
+    /// Returns a new instance of the struct.
     pub fn new(list: &'list Vec<T>) -> Self {
         Elements {
             list,
-            unordered_hash: HashMap::new(),
+            couple_hash: HashMap::new(),
             ordered_table: Vec::new(),
         }
     }
 
-    pub fn hash_unorderly(&mut self) -> &mut Self {
+    /// Hash the elements to its frequency.
+    pub fn hash_couple(&mut self) -> &mut Self {
         let list: &Vec<T> = self.list;
 
-        let unordered_hash: &mut HashMap<T, u32> = &mut self.unordered_hash;
+        let couple_hash: &mut HashMap<T, u32> = &mut self.couple_hash;
 
         let ordered_table: &mut Vec<Row<T>> = &mut self.ordered_table;
 
         for i in list {
-            match unordered_hash.get_mut(i) {
+            match couple_hash.get_mut(i) {
                 Some(val) => {
                     *val += 1;
                 }
 
                 None => {
-                    unordered_hash.insert((*i).clone(), 1);
+                    couple_hash.insert((*i).clone(), 1);
                     ordered_table.push(Row::new((*i).clone(), 0))
                 }
             }
@@ -74,19 +99,35 @@ where
         self
     }
 
-    pub fn update_ordered(&mut self) -> &Self {
-        let unordered_hash: &mut HashMap<T, u32> = &mut self.unordered_hash;
+    /// When we iterate over the hash, the elements might come unordered.
+    /// So we update their order in this method in a third list namingly
+    /// frequency table.
+    pub fn update_order(&mut self) -> &Self {
+        let couple_hash: &mut HashMap<T, u32> = &mut self.couple_hash;
 
         let ordered_table: &mut Vec<Row<T>> = &mut self.ordered_table;
 
         for row in ordered_table.iter_mut() {
-            let val: &u32 = unordered_hash.get(&row.element).unwrap();
+            let val: &u32 = couple_hash.get(&row.element).unwrap();
             row.frequency += *val;
         }
 
         self
     }
 
+    /// Finally we need to chain `hash_couple` and `update_order` with
+    /// `result` method to get final result.
+    ///
+    /// # Examples
+    /// ```
+    /// use elements_frequency::{Row, Elements};
+    /// 
+    /// let list = vec![-5, 11, 4, 4, -5, -7, 11];
+    /// 
+    /// let mut elements = Elements::new(&list);
+    /// 
+    /// let frequency_table = elements.hash_couple().update_order().result();
+    /// ```
     pub fn result(&self) -> &Vec<Row<T>> {
         let ordered_table: &Vec<Row<T>> = &self.ordered_table;
         ordered_table

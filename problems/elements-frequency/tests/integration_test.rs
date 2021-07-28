@@ -12,7 +12,9 @@ mod tests {
     {
         let mut elements: Elements<T> = Elements::new(list);
 
-        let frequency_table: &Vec<Row<T>> = elements.hash_unorderly().update_ordered().result();
+        let frequency_table: &Vec<Row<T>> = elements.hash_couple().update_order().result();
+
+        println!("{:?}", frequency_table);
 
         let mut i: usize = 0;
 
