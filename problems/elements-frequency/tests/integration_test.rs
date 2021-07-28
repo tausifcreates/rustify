@@ -1,9 +1,8 @@
 use elements_frequency::{Elements, Row};
+use std::{fmt::Debug, hash::Hash, u32};
 
 #[cfg(test)]
 mod tests {
-    use std::{fmt::Debug, hash::Hash, u32};
-
     use super::*;
 
     fn setup<T>(list: &Vec<T>, expected: &Vec<(T, u32)>) -> ()

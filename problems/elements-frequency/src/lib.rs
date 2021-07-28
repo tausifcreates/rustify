@@ -49,6 +49,7 @@ impl<U> Row<U> {
 }
 
 /// This struct holds 3 fields:\
+/// \
 /// 1.`list`: The list itself\
 /// \
 /// 2. `couple_hash`: Elements hashed to their frequency.
@@ -75,7 +76,7 @@ where
         }
     }
 
-    /// Hash the elements to its frequency.
+    /// Hash the elements to their frequency.
     pub fn hash_couple(&mut self) -> &mut Self {
         let list: &Vec<T> = self.list;
 
