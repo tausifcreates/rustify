@@ -5,9 +5,7 @@ mod tests {
     use super::*;
 
     fn setup(list: &Vec<i32>, expected_sum: i32) {
-        let len: usize = list.len();
-
-        let mut elements: Elements = Elements::new(&list, len);
+        let mut elements: Elements = Elements::new(&list);
 
         let max_sum: i32 = elements.find_max_sum().result();
 

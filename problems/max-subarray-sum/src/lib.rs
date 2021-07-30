@@ -25,7 +25,7 @@
 /// The `Elements` struct holds the list and related pieces of informations
 /// of it.
 pub struct Elements<'list> {
-    list: &'list Vec<i32>,
+    list: &'list [i32],
     len: usize,
     max_sum: Option<i32>,
 }
@@ -44,10 +44,10 @@ impl<'list> Elements<'list> {
     ///
     /// let mut elements = Elements::new(&mut list, len);
     /// ```
-    pub fn new(list: &'list Vec<i32>, len: usize) -> Self {
+    pub fn new(list: &'list [i32]) -> Self {
         Elements {
             list,
-            len,
+            len: list.len(),
             max_sum: None,
         }
     }
@@ -55,7 +55,7 @@ impl<'list> Elements<'list> {
     /// This method finds the max subarray sum. If there are multiple
     /// subarrays with equal sum it selects the subarray that came first.
     pub fn find_max_sum(&mut self) -> &Self {
-        let list: &Vec<i32> = self.list;
+        let list: &[i32] = self.list;
 
         let len: usize = self.len;
 
@@ -98,7 +98,6 @@ impl<'list> Elements<'list> {
     /// assert_eq!(7, max_sum);
     /// ```
     pub fn result(&self) -> i32 {
-        let max_sum: i32 = self.max_sum.unwrap();
-        max_sum
+        self.max_sum.unwrap()
     }
 }
