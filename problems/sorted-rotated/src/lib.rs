@@ -23,7 +23,7 @@
 //!     let list: Vec<i32> = vec![5, 6, 1, 2, 3, 4];
 //!
 //!     // Or an array can be used as well:
-//!     let list: [i32; 6] = vec![5, 6, 1, 2, 3, 4];
+//!     let list: [i32; 6] = [5, 6, 1, 2, 3, 4];
 //!
 //!     let desired: i32 = 2;
 //!     

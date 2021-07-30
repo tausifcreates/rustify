@@ -1,6 +1,6 @@
 [package]
 name = "sorted-rotated"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
 description = "Finds a number in a sorted and rotated list in O(logN) time."
 documentation = "https://docs.rs/sorted_rotated"
