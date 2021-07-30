@@ -12,7 +12,10 @@
 //! use elements_frequency::{Row, Elements};
 //!
 //! let list = vec!["hi", "who", "me", "who", "me"];
-//!
+//! 
+//! // Or you can use an array instead:
+//! let list[i32; 5] = ["hi", "who", "me", "who", "me"];
+//! 
 //! let mut elements = Elements::new(&list);
 //!
 //! let frequency_table = elements
