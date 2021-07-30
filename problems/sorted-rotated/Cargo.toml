@@ -2,6 +2,11 @@
 name = "sorted-rotated"
 version = "0.1.0"
 edition = "2018"
+description = "Finds a number in a sorted and rotated list in O(logN) time."
+documentation = "https://docs.rs/sorted_rotated"
+repository = "https://github.com/Inoshy/rust-book-helper/tree/master/problems/sorted-rotated"
+license = "MIT"
+keywords = ["algorithm", "array", "rotate"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
