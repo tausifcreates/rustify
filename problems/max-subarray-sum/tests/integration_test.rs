@@ -4,7 +4,7 @@ use max_subarray_sum::Elements;
 mod tests {
     use super::*;
 
-    fn setup(list: &Vec<i32>, expected_sum: i32) {
+    fn setup(list: &[i32], expected_sum: i32) {
         let mut elements: Elements = Elements::new(&list);
 
         let max_sum: i32 = elements.find_max_sum().result();
@@ -77,7 +77,7 @@ mod tests {
 
     #[test]
     fn identical_negative() {
-        let list: Vec<i32> = vec![-1, -1, -1, -1, -1];
+        let list: [i32; 5] = [-1, -1, -1, -1, -1];
 
         let expected_sum: i32 = -1;
 
