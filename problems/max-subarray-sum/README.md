@@ -5,7 +5,7 @@ subarrays, only the one that comes first is selected.
 The algorithm has time complexity of `O(N)` and space complexity
 of `O(1)`.
 
-*version note*: Some modularity problems in previous versions
+**version note**: Some modularity problems in previous versions
 have been patched.
 
 # Quick Start
