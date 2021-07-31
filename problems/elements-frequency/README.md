@@ -10,7 +10,7 @@ So it is expected to work with Strings, slices, integers etc.
 
 # Quick Start
 ```rust
-use elements_frequency::interface::{Row, Elements};
+use elements_frequency::interface::Elements;
 
 fn main() {
     let list = vec!["hi", "who", "me", "who", "me"];

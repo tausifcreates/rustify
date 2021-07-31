@@ -9,7 +9,7 @@
 //!
 //! # Quick Start
 //! ```
-//! use elements_frequency::interface::{Row, Elements};
+//! use elements_frequency::interface::Elements;
 //!
 //! let list = vec!["hi", "who", "me", "who", "me"];
 //! 

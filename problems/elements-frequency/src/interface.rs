@@ -1,7 +1,5 @@
 use std::{collections::HashMap, hash::Hash};
 
-/// This struct acts like rows in frequency table, and holds 2 fields,
-/// the element and its frequency.
 #[derive(Debug, PartialEq)]
 pub struct Row<U> {
     pub element: U,
@@ -80,7 +78,7 @@ where
     ///
     /// # Examples
     /// ```
-    /// use elements_frequency::interface::{Row, Elements};
+    /// use elements_frequency::interface::Elements;
     /// 
     /// let list = vec![-5, 11, 4, 4, -5, -7, 11];
     /// 
