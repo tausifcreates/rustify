@@ -1,38 +1,4 @@
-//! # max_subarray_sum
-//!
-//! Finds maximum subarray sum in a list. This is also known
-//! as max sum contigious subarray. If there are multiple such
-//! subarrays, only the one that comes first is selected.
-//!
-//! The algorithm has time complexity of `O(N)` and space complexity
-//! of `O(1)`.
-//!
-//! # Quick Start
-//! ```
-//! use max_subarray_sum::Elements;
-//!
-//! let list = vec![-2, -3, 4, -1, -2, 1, 5, -3];
-//! 
-//! //Or you can use an array instead:
-//! let list = [-2, -3, 4, -1, -2, 1, 5, -3];
-//!
-//! let elements = Elements::new(&mut list);
-//!
-//! let max_sum = elements.find_max_sum().result();
-//!
-//! assert_eq!(7, max_sum);
-//! ```
-
-/// The `Elements` struct holds the list and related pieces of informations
-/// of it.
-
-pub mod interface;
-/* 
-pub struct Elements<'list> {
-    list: &'list [i32],
-    len: usize,
-    max_sum: Option<i32>,
-}
+pub use super::structure::elements::Elements;
 
 impl<'list> Elements<'list> {
     /// Returns a new instance of `Elements`.
@@ -42,11 +8,9 @@ impl<'list> Elements<'list> {
     /// ```
     /// use max_subarray_sum::Elements;
     ///
-    /// let mut list: Vec<i32> = vec![-2, -3, 4, -1, -2, 1, 5, -3];
+    /// let mut list = vec![-2, -3, 4, -1, -2, 1, 5, -3];
     ///
-    /// let len: usize = list.len();
-    ///
-    /// let mut elements = Elements::new(&mut list, len);
+    /// let mut elements = Elements::new(&mut list);
     /// ```
     pub fn new(list: &'list [i32]) -> Self {
         Elements {
@@ -89,15 +53,13 @@ impl<'list> Elements<'list> {
     ///
     /// # Examples
     /// ```
-    /// use max_subarray_sum::Elements;
+    /// use max_subarray_sum::interface::structure::elements::Elements;
     ///
-    /// let mut list: Vec<i32> = vec![-2, -3, 4, -1, -2, 1, 5, -3];
+    /// let mut list = vec![-2, -3, 4, -1, -2, 1, 5, -3];
     ///
-    /// let len: usize = list.len();
+    /// let mut elements = Elements::new(&mut list);
     ///
-    /// let mut elements = Elements::new(&mut list, len);
-    ///
-    /// let max_sum: i32 = elements.find_max_sum().result();
+    /// let max_sum = elements.find_max_sum().result();
     ///
     /// assert_eq!(7, max_sum);
     /// ```
@@ -105,4 +67,3 @@ impl<'list> Elements<'list> {
         self.max_sum.unwrap()
     }
 }
-*/

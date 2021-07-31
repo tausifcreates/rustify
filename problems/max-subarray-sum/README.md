@@ -11,14 +11,14 @@ of `O(1)`.
 use max_subarray_sum::Elements;
 
 fn main() {
-    let list: Vec<i32> = vec![-2, -3, 4, -1, -2, 1, 5, -3];
+    let list = vec![-2, -3, 4, -1, -2, 1, 5, -3];
 
     //Or you can use an array instead:
-    let list: [i32; 8] = [-2, -3, 4, -1, -2, 1, 5, -3];
+    let list = [-2, -3, 4, -1, -2, 1, 5, -3];
 
     let elements = Elements::new(&mut list);
 
-    let max_sum: i32 = elements.find_max_sum().result();
+    let max_sum = elements.find_max_sum().result();
 
     assert_eq!(7, max_sum);
 }
