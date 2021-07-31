@@ -1,6 +1,6 @@
 [package]
 name = "elements-frequency"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2018"
 description = "Finds frequency of unique elements in a list chronologically."
 documentation = "https://docs.rs/elements_frequency"
