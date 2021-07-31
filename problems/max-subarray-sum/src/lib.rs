@@ -22,7 +22,4 @@
 //!
 //! assert_eq!(7, max_sum);
 //! ```
-
-
 pub mod interface;
-pub mod implement;

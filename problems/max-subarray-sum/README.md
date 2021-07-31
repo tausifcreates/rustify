@@ -5,6 +5,9 @@ subarrays, only the one that comes first is selected.
 The algorithm has time complexity of `O(N)` and space complexity
 of `O(1)`.
 
+*version note*: Some modularity problems in previous versions
+have been patched.
+
 # Quick Start
 ```rust
 use max_subarray_sum::interface::Elements;
@@ -21,5 +24,4 @@ fn main() {
 
     assert_eq!(7, max_sum);
 }
-
 ```
