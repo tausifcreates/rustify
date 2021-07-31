@@ -1,6 +1,5 @@
 # max_subarray_sum
-Finds maximum subarray sum in a list. This is also known
-as max sum contigious subarray. If there are multiple such
+Finds maximum subarray sum in a list. If there are multiple such
 subarrays, only the one that comes first is selected.
 
 The algorithm has time complexity of `O(N)` and space complexity
@@ -8,7 +7,7 @@ of `O(1)`.
 
 # Quick Start
 ```rust
-use max_subarray_sum::Elements;
+use max_subarray_sum::interface::Elements;
 
 fn main() {
     let list = vec![-2, -3, 4, -1, -2, 1, 5, -3];

@@ -1,4 +1,4 @@
-use max_subarray_sum::interface::structure::elements::Elements;
+use max_subarray_sum::interface::Elements;
 
 #[cfg(test)]
 mod tests {

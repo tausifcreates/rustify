@@ -1,17 +1,7 @@
-pub use super::structure::elements::Elements;
+pub use super::interface::Elements;
 
 impl<'list> Elements<'list> {
-    /// Returns a new instance of `Elements`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use max_subarray_sum::Elements;
-    ///
-    /// let mut list = vec![-2, -3, 4, -1, -2, 1, 5, -3];
-    ///
-    /// let mut elements = Elements::new(&mut list);
-    /// ```
+    /// Returns a new instance of struct `Elements`.
     pub fn new(list: &'list [i32]) -> Self {
         Elements {
             list,
@@ -53,7 +43,7 @@ impl<'list> Elements<'list> {
     ///
     /// # Examples
     /// ```
-    /// use max_subarray_sum::interface::structure::elements::Elements;
+    /// use max_subarray_sum::interface::Elements;
     ///
     /// let mut list = vec![-2, -3, 4, -1, -2, 1, 5, -3];
     ///
