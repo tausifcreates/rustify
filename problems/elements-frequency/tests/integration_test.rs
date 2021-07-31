@@ -1,4 +1,4 @@
-use elements_frequency::{Elements, Row};
+use elements_frequency::interface::{Elements, Row};
 use std::{fmt::Debug, hash::Hash, u32};
 
 #[cfg(test)]
@@ -131,6 +131,15 @@ mod tests {
         ];
 
         let expected: Vec<(String, u32)> = vec![(String::from("hi"), 6)];
+
+        setup(&list, &expected);
+    }
+
+    #[test]
+    fn char_1() {
+        let list: Vec<char> = vec!['a', 'c', 'a', 'b', 'c'];
+
+        let expected: Vec<(char, u32)> = vec![('a', 2), ('c', 2), ('b', 1)];
 
         setup(&list, &expected);
     }

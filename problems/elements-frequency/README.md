@@ -7,3 +7,29 @@ So it is expected to work with Strings, slices, integers etc.
 
 * Time Complexity: `O(N)`
 * Space Complexity: `O(N)`
+
+# Quick Start
+```rust
+fn main() {
+    use elements_frequency::{Row, Elements};
+
+    let list = vec!["hi", "who", "me", "who", "me"];
+    
+    // Or you can use an array instead:
+    let list = ["hi", "who", "me", "who", "me"];
+    
+    let mut elements = Elements::new(&list);
+
+    let table = elements.hash_couple().update_order().result();
+    
+    println!("{:?}", table);
+
+    //
+    // [
+    //    Row { element: "hi", frequency: 1 }, 
+    //    Row { element: "who", frequency: 2 }, 
+    //    Row { element: "me", frequency: 2 },
+    // ]   
+    //
+}
+```
