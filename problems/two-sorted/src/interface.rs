@@ -6,7 +6,7 @@ pub struct Elements<'list, T> {
     big_len: usize,
     small_len: usize,
 }
-
+ 
 impl<'list, T> Elements<'list, T>
 where
     T: Copy + PartialOrd + Debug + PartialEq,
