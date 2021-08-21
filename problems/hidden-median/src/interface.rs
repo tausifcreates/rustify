@@ -229,7 +229,7 @@ impl<'list> Holder<'list> {
 
         self
     }
-    /// Examples
+    /// # Examples
     ///
     /// ```
     /// use hidden_median::interface::Holder;
