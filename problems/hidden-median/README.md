@@ -32,3 +32,5 @@ fn main() {
     // output: (4, 4, "median is a single number.")
 }
 ```
+
+**Version Note:** changed a function to private from public (because not needs to be available for end user)
