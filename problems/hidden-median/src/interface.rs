@@ -41,7 +41,7 @@ impl<'list> Holder<'list> {
         }
     }
 
-    pub fn run(&mut self, mut left_boundary_a: usize, mut right_boundary_a: usize) {
+    fn run(&mut self, mut left_boundary_a: usize, mut right_boundary_a: usize) {
         let list_a: &[i32] = self.list_a;
         let list_b: &[i32] = self.list_b;
         let len_a: usize = self.len_a;
