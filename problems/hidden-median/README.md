@@ -1,4 +1,4 @@
-# hidden_median
+## hidden_median
 
 you have 2 sorted lists of different size (or similar), and you want to find the median
 when these 2 lists are merged without breaking sorted state. Also, you might want to
@@ -10,6 +10,9 @@ have avoided recursion and while-loop for minimizing runtime strikes, instead us
 plain for loop that runs only `Olog(min(a, b))` times.
 
 In short, this is `hidden_median` crate for you. lets look at a quick example!
+
+
+### Quick Start
 
 ```rust
 use hidden_median::interface::Holder;
