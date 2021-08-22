@@ -1,6 +1,6 @@
 [package]
 name = "hidden-median"
-version = "0.1.1"
+version = "0.1.3"
 edition = "2018"
 description = "Finds the median of two lists, when merged without breaking sorted state."
 documentation = "https://docs.rs/hidden_median"

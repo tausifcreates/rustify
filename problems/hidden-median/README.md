@@ -1,16 +1,12 @@
 ## hidden_median
 
-you have 2 sorted lists of different size (or similar), and you want to find the median
-when these 2 lists are merged without breaking sorted state. Also, you might want to
-find median in the fastest time, that is `Olog(min(a, b))`, whereas `a` and `b` are the
-length of your arrays or vectors, whatever.
+Finds the hidden median of 2 sorted arrays in `Olog(min(a, b))` time.
 
-Yes, this crate uses an algorithm that performs the search in shortest time. Also, I
-have avoided recursion and while-loop for minimizing runtime strikes, instead used a 
-plain for loop that runs only `Olog(min(a, b))` times.
+This crate works with both arrays and vectors. Also, I have avoided recursion 
+and while-loop for minimizing runtime strikes, instead used a plain for loop 
+that runs only `Olog(min(a, b))` times.
 
 In short, this is `hidden_median` crate for you. lets look at a quick example!
-
 
 ### Quick Start
 
@@ -33,4 +29,4 @@ fn main() {
 }
 ```
 
-**Version Note:** changed a function to private from public (because not needs to be available for end user)
+**Version Note:** changed the `readme`
