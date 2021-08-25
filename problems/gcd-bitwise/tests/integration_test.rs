@@ -1,12 +1,11 @@
-use gcd_bitwise::interface::GcdBuilder;
+use gcd_bitwise::interface::gcd;
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
     fn setup(num1: u64, num2: u64, expected: u64) {
-        let gcd_builder = GcdBuilder::new(num1, num2);
-        let result = gcd_builder.build();
+        let result: u64 = gcd(num1, num2);
         assert_eq!(result, expected);
     }
 

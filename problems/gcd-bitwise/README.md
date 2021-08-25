@@ -8,19 +8,17 @@ The code is part of the [coreutils](https://github.com/uutils/coreutils/blob/15d
 
 ### Quick Start
 ```rust
-use gcd_bitwise::interface::GcdBuilder;
+use gcd_bitwise::interface::gcd;
 
 fn main() {
     let num1 = 15;
 
     let num2 = 51;
      
-    let gcd = GcdBuilder::new(num1, num2);
-     
-    let gcd = gcd.build();
+    let gcd = gcd(num1, num2);
      
     println!("gcd: {}", gcd); // 3   
 }
 ```
 
-***version_note:*** Change README.md
+***version_note:*** Made the api simpler to use.
