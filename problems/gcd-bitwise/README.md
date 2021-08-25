@@ -29,4 +29,4 @@ The specific rust implementation from [coreutils](https://github.com/uutils/core
   
 * The loop is laid out so as to avoid repeated work; for instance, eliminating `2` as a factor of `num2` was moved to the back of the loop, and after the exit condition, as `num2` is known to be odd upon entering the loop.
   
-* The body of the loop is branch-free except for its exit condition `(num2 == 0)`, as the exchange of `num1` and `num2` (ensuring num1 <= num2) compiles down to conditional moves. Hard-to-predict branches can have a large, negative impact on performance.
+* The body of the loop is branch-free except for its exit condition `(num2 == 0)`, as the exchange of `num1` and `num2` (ensuring `num1 <= num2`) compiles down to conditional moves. Hard-to-predict branches can have a large, negative impact on performance.
