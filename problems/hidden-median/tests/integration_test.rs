@@ -278,6 +278,16 @@ mod tests {
     }
 
     #[test]
+    fn fails() {
+        let list_a = [4, 5, 6, 8, 9, 11];
+        let list_b = [1, 2, 3, 7, 10, 12];
+
+        let expected = (6, 7);
+
+        setup(&list_a, &list_b, expected);
+    }
+
+    #[test]
     fn very_big() {
         let mut list_a = [0; 50];
         let mut list_b = [0; 50];
