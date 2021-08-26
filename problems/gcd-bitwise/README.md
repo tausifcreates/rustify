@@ -21,4 +21,4 @@ fn main() {
 }
 ```
 
-***version_note:*** Made the api simpler to use.
+***version_note:*** Made the api simpler to use. Please refer to the [repository](https://github.com/Inoshy/rust-book-helper/tree/master/problems/gcd-bitwis) for the documentation, if you find that `docs.rs` didn't build the docs for latest version.

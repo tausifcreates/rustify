@@ -1,9 +1,9 @@
 [package]
 name = "gcd-bitwise"
-version = "0.1.6"
+version = "0.1.7"
 edition = "2018"
 description = "The binary Euclidean algorithm for computing gcd."
-documentation = "https://docs.rs/gcd_bitwise"
+documentation = "https://docs.rs/gcd-bitwise/0.1.7"
 repository = "https://github.com/Inoshy/rust-book-helper/tree/master/problems/gcd-bitwise"
 license = "MIT"
 keywords = ["algorithm", "gcd"]
