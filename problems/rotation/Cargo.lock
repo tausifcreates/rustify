@@ -10,7 +10,7 @@ checksum = "039a10551d8ab72982ef9e1e3728af7aebeb175a1d26aff6a88a7a4765dbfcd5"
 
 [[package]]
 name = "rotation"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "gcd-bitwise",
 ]

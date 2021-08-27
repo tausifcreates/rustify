@@ -1,9 +1,30 @@
 use gcd_bitwise::interface as gcd_builder;
 
-pub fn rotate_anticlock(list: &mut [i32], mut offset: usize) -> &[i32] {
+/// # Examples
+///
+/// ```
+/// use rotation::interface as rotator;
+///
+/// fn main() {
+///     let mut list = [1, 2, 3, 4, 5];
+///
+///     let spin = 2;
+///
+///     // rotate clockwise
+///     let rotated = rotator::rotate_clock(&mut list, spin);
+///
+///     println!("{:?}", rotated); // [4, 5, 1, 2, 3];
+/// 
+///     // rotate anti clockwise
+///     let rotated = rotator::rotate_anticlock(&mut list, spin);
+///
+///     println!("{:?}", rotated); // [3, 4, 5, 1, 2];
+/// }
+/// ```
+pub fn rotate_anticlock(list: &mut [i32], mut spin: usize) -> &[i32] {
     let len = list.len();
-    offset %= len;
-    let gcd = gcd_builder::gcd(len as u64, offset as u64) as usize;
+    spin %= len;
+    let gcd = gcd_builder::gcd(len as u64, spin as u64) as usize;
     let turns = len / gcd - 1;
 
     let mut start: usize = 0;
@@ -21,10 +42,10 @@ pub fn rotate_anticlock(list: &mut [i32], mut offset: usize) -> &[i32] {
     list
 }
 
-pub fn rotate_clock(list: &mut [i32], mut offset: usize) -> &[i32] {
+pub fn rotate_clock(list: &mut [i32], mut spin: usize) -> &[i32] {
     let len = list.len();
-    offset %= len;
-    let gcd = gcd_builder::gcd(len as u64, offset as u64) as usize;
+    spin %= len;
+    let gcd = gcd_builder::gcd(len as u64, spin as u64) as usize;
     let turns = len / gcd - 1;
 
     let mut end: usize = len - 1;

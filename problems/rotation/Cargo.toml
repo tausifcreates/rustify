@@ -1,7 +1,12 @@
 [package]
 name = "rotation"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
+description = "Rotate your list clockwise and anti-clockwise"
+documentation = "https://docs.rs/rotation"
+repository = "https://github.com/Inoshy/rust-book-helper/tree/master/problems/rotation"
+license = "MIT"
+keywords = ["algorithm", "array", "rotation"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
