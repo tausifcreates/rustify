@@ -2,13 +2,13 @@
 
 **Disclaimer: The code is not mine.**
 
-The code is part of the [coreutils](https://github.com/uutils/coreutils/blob/15da98d84e9a094ea72c5f51efcc2d8aa9e9184f/src/uu/factor/src/numeric/gcd.rs) project. I have forked it for ease of use, for those who dont want to pull in big dependencies for calculating gcd.
+The underlying code is part of the [coreutils](https://github.com/uutils/coreutils/blob/15da98d84e9a094ea72c5f51efcc2d8aa9e9184f/src/uu/factor/src/numeric/gcd.rs) project. I have forked it for ease of use, for those who dont want to pull in big dependencies. I modified some parts for general use cases, eg. implementing generic types. This crate is dependency free.
 
 ## Big Update!
-You can pass any numeric type into `gcd()` function. You can pass `u8`, `u16`, `u32`, `u64` and hell, even `usize`. But please note that the 2 numbers that you pass must have the same type. Please have a look at the **Quick Start** section below for examples.
+You can pass **`u8`**, **`u16`**, **`u32`**, **`u64`** and **`usize`** numeric types into **`gcd()`** function. But please note that the 2 numbers that you pass must have the same type. Passing any signed type (like `i32`) may give unexpected results. Please have a look at the **Quick Start** section below for examples.
 
 ### Some Notes
-This code uses stein's algorithm, that replaces division with arithmetic shifts, comparisons, and subtraction, for optimization of performance. For more info on how efficient this algorithm is, please refer to [this page](https://en.wikipedia.org/wiki/Binary_GCD_algorithm).
+This code uses stein's algorithm, that replaces division with arithmetic shifts, comparisons, and subtraction, for optimization of performance. For more info please refer to [this page](https://en.wikipedia.org/wiki/Binary_GCD_algorithm).
 
 ### Quick Start
 ```rust
@@ -36,3 +36,5 @@ fn main() {
     // And on it goes...
 }
 ```
+
+**`Final Note:`** If you find any problems dont hesitate to open an issue on github.
