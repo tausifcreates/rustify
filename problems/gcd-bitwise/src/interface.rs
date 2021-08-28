@@ -3,7 +3,7 @@ use std::convert::TryFrom;
 use std::convert::TryInto;
 use std::fmt::Debug;
 use std::mem::swap;
-use std::ops::*;
+use std::ops::{ShlAssign, ShrAssign, SubAssign};
 /// # Examples
 ///
 /// ```
@@ -21,12 +21,12 @@ use std::ops::*;
 pub fn gcd<T>(mut num1: T, mut num2: T) -> T
 where
     T: Copy
-        + TryFrom<u32>
         + PartialEq
+        + PartialOrd
         + ShrAssign
         + ShlAssign
-        + PartialOrd
         + SubAssign
+        + TryFrom<u32>
         + TryInto<u32>,
     <T as TryFrom<u32>>::Error: Debug,
     <T as TryInto<u32>>::Error: Debug,
