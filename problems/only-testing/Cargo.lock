@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "gcd-bitwise"
-version = "0.1.8"
+name = "only-testing"
+version = "0.1.0"

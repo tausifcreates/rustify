@@ -1,33 +1,48 @@
 use std::cmp::min;
+use std::convert::TryFrom;
+use std::convert::TryInto;
+use std::fmt::Debug;
 use std::mem::swap;
-
+use std::ops::*;
 /// # Examples
 ///
 /// ```
 /// use gcd_bitwise::interface::gcd;
 ///
 /// fn main() {
-///     let num1 = 15;
+///     let num1: u8 = 15;
 ///
-///     let num2 = 51;
+///     let num2: u8 = 51;
 ///     
 ///     let gcd = gcd(num1, num2);
 ///     
 ///     println!("gcd: {}", gcd); // 3   
 /// }
-pub fn gcd(mut num1: u64, mut num2: u64) -> u64 {
-    if num1 == 0 {
+pub fn gcd<T>(mut num1: T, mut num2: T) -> T
+where
+    T: Copy
+        + TryFrom<u32>
+        + PartialEq
+        + ShrAssign
+        + ShlAssign
+        + PartialOrd
+        + SubAssign
+        + TryInto<u32>,
+    <T as TryFrom<u32>>::Error: Debug,
+    <T as TryInto<u32>>::Error: Debug,
+{
+    if num1.try_into().unwrap() == 0 {
         return num2;
-    } else if num2 == 0 {
+    } else if num2.try_into().unwrap() == 0 {
         return num1;
     }
 
-    let min_twos: u32 = {
-        let twos_num1: u32 = num1.trailing_zeros();
-        let twos_num2: u32 = num2.trailing_zeros();
+    let min_twos = {
+        let twos_num1 = num1.try_into().unwrap().trailing_zeros();
+        let twos_num2 = num2.try_into().unwrap().trailing_zeros();
 
-        num1 >>= twos_num1;
-        num2 >>= twos_num2;
+        num1 >>= T::try_from(twos_num1).unwrap();
+        num2 >>= T::try_from(twos_num2).unwrap();
 
         min(twos_num1, twos_num2)
     };
@@ -39,10 +54,11 @@ pub fn gcd(mut num1: u64, mut num2: u64) -> u64 {
 
         num2 -= num1;
 
-        if num2 == 0 {
-            return num1 << min_twos;
+        if num2.try_into().unwrap() == 0 {
+            num1 <<= T::try_from(min_twos).unwrap();
+            return num1;
         }
 
-        num1 >>= num1.trailing_zeros();
+        num1 >>= T::try_from(num1.try_into().unwrap().trailing_zeros()).unwrap();
     }
 }
