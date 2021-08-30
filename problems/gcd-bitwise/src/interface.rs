@@ -26,10 +26,10 @@ where
         + ShrAssign
         + ShlAssign
         + SubAssign
-        + TryFrom<u32>
-        + TryInto<u32>,
-    <T as TryFrom<u32>>::Error: Debug,
-    <T as TryInto<u32>>::Error: Debug,
+        + TryFrom<usize>
+        + TryInto<usize>,
+    <T as TryFrom<usize>>::Error: Debug,
+    <T as TryInto<usize>>::Error: Debug,
 {
     if num1.try_into().unwrap() == 0 {
         return num2;
@@ -37,9 +37,14 @@ where
         return num1;
     }
 
-    let min_twos: u32 = {
-        let twos_num1: u32 = num1.try_into().unwrap().trailing_zeros();
-        let twos_num2: u32 = num2.try_into().unwrap().trailing_zeros();
+    let min_twos = {
+        let twos_num1 = num1.try_into()
+                                    .unwrap()
+                                    .trailing_zeros() as usize;
+
+        let twos_num2 = num2.try_into()
+                                    .unwrap()
+                                    .trailing_zeros() as usize;
 
         num1 >>= T::try_from(twos_num1).unwrap();
         num2 >>= T::try_from(twos_num2).unwrap();
@@ -59,6 +64,9 @@ where
             return num1;
         }
 
-        num1 >>= T::try_from(num1.try_into().unwrap().trailing_zeros()).unwrap();
+        num1 >>= T::try_from(num1.try_into()
+                                    .unwrap()
+                                    .trailing_zeros() as usize)
+                                    .unwrap();
     }
 }

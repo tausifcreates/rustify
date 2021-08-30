@@ -16,11 +16,11 @@ mod tests {
             + ShlAssign
             + PartialOrd
             + SubAssign
-            + TryFrom<u32>
+            + TryFrom<usize>
             + ShrAssign
-            + TryInto<u32>,
-        <T as TryFrom<u32>>::Error: Debug,
-        <T as TryInto<u32>>::Error: Debug,
+            + TryInto<usize>,
+        <T as TryFrom<usize>>::Error: Debug,
+        <T as TryInto<usize>>::Error: Debug,
     {
         let result = gcd(num1, num2);
         assert_eq!(result, expected);

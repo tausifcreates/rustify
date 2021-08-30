@@ -1,6 +1,6 @@
 [package]
 name = "gcd-bitwise"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2018"
 description = "The binary Euclidean algorithm for computing gcd."
 documentation = "https://docs.rs/gcd-bitwise/0.1.7"

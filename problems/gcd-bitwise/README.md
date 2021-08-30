@@ -4,7 +4,9 @@
 
 The underlying code is part of the [coreutils](https://github.com/uutils/coreutils/blob/15da98d84e9a094ea72c5f51efcc2d8aa9e9184f/src/uu/factor/src/numeric/gcd.rs) project. I have forked it for ease of use, for those who dont want to pull in big dependencies. I modified some parts for general use cases, eg. implementing generic types. This crate is dependency free.
 
-## Big Update!
+### Update!
+numeric types of arguments will be cast to **`usize`** instead of **`u32`** from now.
+
 You can pass **`u8`**, **`u16`**, **`u32`**, **`u64`** and **`usize`** numeric types into **`gcd()`** function. But please note that the 2 numbers that you pass must have the same type. Passing any signed type (like `i32`) may give unexpected results. Please have a look at the **Quick Start** section below for examples.
 
 ### Some Notes
