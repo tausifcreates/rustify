@@ -1,6 +1,5 @@
 use std::cmp::min;
-use std::convert::TryFrom;
-use std::convert::TryInto;
+use std::convert::{TryFrom, TryInto};
 use std::fmt::Debug;
 use std::mem::swap;
 use std::ops::{ShlAssign, ShrAssign, SubAssign};
