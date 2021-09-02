@@ -1,19 +1,13 @@
-use closest_sum_pair::Elements;
+use closest_sum_pair::interface::Elements;
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    fn setup(list: &mut Vec<i32>, desired_sum: i32, expected_pair: (i32, i32)) {
-        let len: usize = list.len();
+    fn setup(list: &mut [i32], desired_sum: i32, expected_pair: (i32, i32)) {
+        let mut elements: Elements = Elements::new(list, desired_sum);
 
-        let mut elements: Elements = Elements::new(list, len, desired_sum);
-
-        let pair: (i32, i32) = elements
-            .sort_list()
-            .find_init_distance()
-            .find_pair()
-            .result();
+        let pair: (i32, i32) = elements.init_distance().find_pair();
 
         assert_eq!(expected_pair, pair);
     }
@@ -108,7 +102,7 @@ mod tests {
 
     #[test]
     fn negative_lower() {
-        let mut list: Vec<i32> = vec![-2, -4, -7, -2, -5, -13, -7];
+        let mut list= [-2, -4, -7, -2, -5, -13, -7];
 
         let desired_sum: i32 = -16;
 
@@ -117,5 +111,3 @@ mod tests {
         setup(&mut list, desired_sum, expected_pair);
     }
 }
-
-
