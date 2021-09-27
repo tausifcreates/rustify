@@ -6,6 +6,9 @@ As it expects unsorted list, The time complexity is `O(NlogN)`. Space complexity
 
 ### Quick Start
 
+The **`find_pair`** method expects a list (can be vec or array), and your desired sum.
+If there is no exact match, it will return the closest sum possible.
+
 ```rust
 use closest_sum_pair::interface::find_pair;
 
