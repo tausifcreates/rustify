@@ -1,13 +1,12 @@
-use closest_sum_pair::interface::Elements;
+use closest_sum_pair::interface::find_pair;
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
     fn setup(list: &mut [i32], desired_sum: i32, expected_pair: (i32, i32)) {
-        let mut elements: Elements = Elements::new(list, desired_sum);
 
-        let pair: (i32, i32) = elements.init_distance().find_pair();
+        let pair: (i32, i32) = find_pair(list, desired_sum);
 
         assert_eq!(expected_pair, pair);
     }
