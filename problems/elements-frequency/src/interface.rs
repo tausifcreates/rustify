@@ -81,7 +81,7 @@ where
     /// use elements_frequency::interface::Elements;
     /// 
     /// let list = vec![-5, 11, 4, 4, -5, -7, 11];
-    /// 
+    ///
     /// let mut elements = Elements::new(&list);
     /// 
     /// let frequency_table = elements.hash_couple().update_order().result();
