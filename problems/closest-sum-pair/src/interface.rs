@@ -1,6 +1,5 @@
-// This method finds a number for `init_distance` field so that
-// `init_distance ≥ | sum of any pair - desired sum |`\
-pub fn find_distance(list: &mut [i32], desired_sum: i32) -> Option<i32> {
+// `distance ≥ | sum of any pair - desired sum |`
+pub fn find_distance(list: &mut [i32], desired_sum: i32) -> i32 {
     list.sort();
 
     let len: usize = list.len();
@@ -12,10 +11,10 @@ pub fn find_distance(list: &mut [i32], desired_sum: i32) -> Option<i32> {
     let avg_sum: i32 = (highest_sum + lowest_sum) / 2;
 
     if avg_sum - desired_sum <= 0 {
-        return Some(desired_sum - lowest_sum);
+        return desired_sum - lowest_sum;
     }
 
-    return Some(highest_sum - desired_sum);
+    return highest_sum - desired_sum;
 }
 // This method runs a loop and tries to minimize the distance
 // for every comparison between current distance and sum of
@@ -35,13 +34,11 @@ pub fn find_distance(list: &mut [i32], desired_sum: i32) -> Option<i32> {
 /// }
 /// ```
 pub fn find_pair(list: &mut [i32], desired_sum: i32) -> (i32, i32) {
-    let init_distance = find_distance(list, desired_sum);
+    let mut init_distance = find_distance(list, desired_sum);
 
     let mut pair: Option<(i32, i32)> = None;
 
     let len: usize = list.len();
-
-    let mut distance = init_distance.unwrap();
 
     let mut left_index: usize = 0;
 
@@ -52,8 +49,8 @@ pub fn find_pair(list: &mut [i32], desired_sum: i32) -> (i32, i32) {
 
         let temp_distance: i32 = desired_sum - temp_sum;
 
-        if temp_distance.abs() < distance.abs() {
-            distance = temp_distance;
+        if temp_distance.abs() < init_distance.abs() {
+            init_distance = temp_distance;
             pair = Some((list[left_index], list[right_index]));
         }
 
