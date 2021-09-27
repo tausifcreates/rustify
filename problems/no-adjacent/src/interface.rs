@@ -1,3 +1,15 @@
+/// # Examples 
+/// ```
+/// use no_adjacent::interface::calculate;
+///
+/// fn main() {
+///     let list = [2, 1, 4, 6, 8, 9, 18];
+/// 
+///     let sum = calculate(&list);
+/// 
+///     println!("sum {}", sum); // 32
+/// }
+/// ```
 pub fn calculate(list: &[i32]) -> i32 {
     let mut max_excl = list[0];
     let mut max_incl = list[1];
@@ -14,8 +26,6 @@ pub fn calculate(list: &[i32]) -> i32 {
 
         max_incl = next_max_incl.unwrap();
     }
-
-    println!("{}, {}", max_incl, max_excl);
 
     if max_incl > max_excl {
         return max_incl;

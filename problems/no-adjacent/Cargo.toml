@@ -2,6 +2,11 @@
 name = "no-adjacent"
 version = "0.1.0"
 edition = "2018"
+description = "Max sum when no two elements are adjacent"
+documentation = "https://docs.rs/no-adjacent"
+repository = "https://codeberg.org/ino/rusty-algos/src/branch/master/problems/no-adjacent"
+license = "MIT"
+keywords = ["algorithm", "array", "sum"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
