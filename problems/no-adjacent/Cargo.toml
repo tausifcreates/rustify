@@ -1,8 +1,8 @@
 [package]
 name = "no-adjacent"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
-description = "Max sum when no two elements are adjacent"
+description = "Max sum when no two elements are adjacent in a list."
 documentation = "https://docs.rs/no-adjacent"
 repository = "https://codeberg.org/ino/rusty-algos/src/branch/master/problems/no-adjacent"
 license = "MIT"

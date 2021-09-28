@@ -18,3 +18,4 @@ fn main() {
 }
 
 ```
+**version note:** Fix a stupid design
