@@ -13,7 +13,7 @@ mod tests {
         X: Copy + PartialOrd + Debug + Add<Output = X> + Sub<Output = X> + TryInto<f64>,
     {
         list.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        
+
         let pair = find_pair(list, desired_sum);
 
         assert_eq!(expected_pair, pair);
@@ -120,11 +120,11 @@ mod tests {
 
     #[test]
     fn float_test() {
-        let mut list: [f32; 7] = [-2.0, -4.0, -7.0, -2.0, -5.0, -13.0, -7.0];
+        let mut list: [f32; 7] = [-2.2, -4.0, -7.9, -2.1, -5.5, -13.0, -7.1];
 
-        let desired_sum: f32 = -16.0;
+        let desired_sum: f32 = -16.7;
 
-        let expected_pair: (f32, f32) = (-13.0, -2.0);
+        let expected_pair: (f32, f32) = (-13.0, -4.0);
 
         setup(&mut list, desired_sum, expected_pair);
     }

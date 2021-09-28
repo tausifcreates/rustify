@@ -35,4 +35,22 @@ fn main() {
 }
 ```
 
+**Example with floating point:**
+
+```rust
+use closest_sum_pair::interface::find_pair;
+
+fn main() {
+    let mut list = [-2, -4, -7, -2, -5, -13, -7];
+
+    list.sort();
+
+    let desired_sum = -1;
+
+    let pair = find_pair(&mut list, desired_sum);
+
+    println!("pair {:?}", pair) // (-2, -2)
+}
+```
+
 **version note:** Made the api easier to use.

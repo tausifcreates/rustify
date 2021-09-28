@@ -45,12 +45,14 @@ where
 ///
 /// fn main() {
 ///    let mut list = [-2, -4, -7, -2, -5, -13, -7];
+///   
+///    list.sort();
 ///
-///     let desired_sum = -1;
+///    let desired_sum = -1;
 ///
-///     let pair = find_pair(&mut list, desired_sum);
+///    let pair = find_pair(&mut list, desired_sum);
 ///
-///     println!("pair {:?}", pair) // (-2, -2)
+///    println!("pair {:?}", pair) // (-2, -2)
 /// }
 /// ```
 pub fn find_pair<U>(list: &mut [U], desired_sum: U) -> (U, U)
