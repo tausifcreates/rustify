@@ -41,16 +41,17 @@ fn main() {
 use closest_sum_pair::interface::find_pair;
 
 fn main() {
-    let mut list = [-2, -4, -7, -2, -5, -13, -7];
+    let mut list: [f32; 7] = 
+    [-2.2, -4.0, -7.9, -2.1, -5.5, -13.0, -7.1];
 
-    list.sort();
+    list.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
-    let desired_sum = -1;
+    let desired_sum = -16.7;
 
     let pair = find_pair(&mut list, desired_sum);
 
-    println!("pair {:?}", pair) // (-2, -2)
+    println!("pair {:?}", pair) // (-13.0, -4.0)
 }
 ```
 
-**version note:** Made the api easier to use.
+**version note:** Support multiple types.
