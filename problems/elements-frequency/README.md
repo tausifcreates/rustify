@@ -1,35 +1,35 @@
-Finds frequency table of the unique elements present in the list.
-In the table the elements come in "First come first serve" manner,
-namingly the order they appear in the list.
+Finds frequency of the unique elements present in the list.
 
-This lbrary can work with any types that implement `Clone`.
-So it is expected to work with Strings, slices, integers etc.
+### Update: Multithreading.
+
+~~This lbrary can work with any types that implement `Clone`.~~
+~~So it is expected to work with Strings, slices, integers etc.~~
+
+Not anymore. From now, it works with all types that implement `Copy`. Also it became kinda bloated, thi small crate has got a dependency, `crossbeam`.
+
+Good news is, now its multithreaded, and you can decided how many threads it will use. the **`find_frequency`** function takes **`2`** arguments, the first one is the array or vector containing elements, and second argument is the number of threads.
+
+you can specify any number of threads you want, and performance may vary upon that. The function will just return a hashmap, that is, unique elements hashed with their frequencies.
+
+The function doesn't do anything else, for example, arrange them in a special order. it leaves the rest upto the user, they can do what they want with it. This improves perfomance.
 
 * Time Complexity: `O(N)`
 * Space Complexity: `O(N)`
 
 # Quick Start
 ```rust
-use elements_frequency::interface::Elements;
+use elements_frequency::interface::frequency_finder;
+ 
+fn main () {
+    let myList = [1, 1, -6, 2, 6, 2, 7, 1];
+ 
+    let myThreads = 6;
+ 
+    let frequency_map = frequency_finder(&myList, myThreads);
+ 
+    println!("{:?}", frequency_map);
 
-fn main() {
-    let list = vec!["hi", "who", "me", "who", "me"];
-    
-    // Or you can use an array instead:
-    let list = ["hi", "who", "me", "who", "me"];
-    
-    let mut elements = Elements::new(&list);
-
-    let table = elements.hash_couple().update_order().result();
-    
-    println!("{:?}", table);
-
-    //
-    // [
-    //    Row { element: "hi", frequency: 1 }, 
-    //    Row { element: "who", frequency: 2 }, 
-    //    Row { element: "me", frequency: 2 },
-    // ]   
-    //
+    // Output:
+    // {6: 1, -6: 1, 2: 2, 7: 1, 1: 3}
 }
 ```

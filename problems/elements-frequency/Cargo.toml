@@ -1,14 +1,15 @@
 [package]
 name = "elements-frequency"
-version = "0.1.4"
+version = "0.2.0"
 edition = "2018"
-description = "Finds frequency of unique elements in a list chronologically."
+description = "Finds the frequency of elements in a list."
 documentation = "https://docs.rs/elements_frequency"
 readme = "README.md"
-repository = "https://github.com/Inoshy/rust-book-helper/tree/master/problems/elements-frequency"
+repository = "https://codeberg.org/ino/rusty-algos/src/branch/master/problems/elements-frequency"
 license = "MIT"
 keywords = ["algorithm", "array"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+crossbeam-utils = "0.8"

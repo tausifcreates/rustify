@@ -1,93 +1,76 @@
-use std::{collections::HashMap, hash::Hash};
+use crossbeam_utils::thread;
+use std::collections::HashMap;
+use std::fmt::Debug;
+use std::hash::Hash;
+use std::sync::{Arc, Mutex, MutexGuard};
 
-#[derive(Debug, PartialEq)]
-pub struct Row<U> {
-    pub element: U,
-    pub frequency: u32,
-}
-
-impl<U> Row<U> {
-    /// Returns an instance of `Row` struct.
-    pub fn new(element: U, frequency: u32) -> Self {
-        Row { element, frequency }
-    }
-}
-
-#[derive(Debug)]
-pub struct Elements<'list, T> {
-    list: &'list Vec<T>,
-    couple_hash: HashMap<T, u32>,
-    ordered_table: Vec<Row<T>>,
-}
-
-impl<'list, T> Elements<'list, T>
+/// Examples
+/// ```
+/// use elements_frequency::interface::frequency_finder;
+/// 
+/// fn main () {
+///     let myList = [1, 1, -6, 2, 6, 2, 7, 1];
+/// 
+///     let myThreads = 6;
+/// 
+///     let frequency_map = frequency_finder(&myList, myThreads);
+/// 
+///     println!("{:?}", frequency_map);
+/// }
+/// 
+/// ```
+pub fn frequency_finder<T>(list: &[T], nthreads: usize) -> HashMap<T, u32>
 where
-    T: Clone + Hash + Eq,
+    T: Copy + Hash + Eq + Sync + Send + Debug,
 {
-    /// Returns a new instance of the struct.
-    pub fn new(list: &'list Vec<T>) -> Self {
-        Elements {
-            list,
-            couple_hash: HashMap::new(),
-            ordered_table: Vec::new(),
+    let len: usize = list.len();
+
+    let range: usize = len / nthreads;
+
+    let split_index: usize = nthreads * range;
+
+    let residue: usize = len % nthreads;
+
+    // A map that hashes every unique elements to it's frequency
+    let map: Arc<Mutex<HashMap<T, u32>>> = Arc::new(Mutex::new(HashMap::new()));
+
+    thread::scope(|s| {
+        for i in 1..=nthreads {
+            let map_arc: Arc<Mutex<HashMap<T, u32>>> = Arc::clone(&map);
+
+            s.spawn(move |_| {
+                let mut map_guard: MutexGuard<HashMap<T, u32>> = map_arc.lock().unwrap();
+
+                for k in (i - 1) * range..i * range {
+                    match map_guard.get_mut(&list[k]) {
+                        Some(val) => {
+                            *val += 1;
+                        }
+
+                        None => {
+                            map_guard.insert(list[k], 1);
+                        }
+                    }
+                }
+            });
         }
-    }
+    })
+    .unwrap();
 
-    /// Hash the elements to their frequency.
-    pub fn hash_couple(&mut self) -> &mut Self {
-        let list: &Vec<T> = self.list;
+    let mut map: HashMap<T, u32> = Arc::try_unwrap(map).unwrap().into_inner().unwrap();
 
-        let couple_hash: &mut HashMap<T, u32> = &mut self.couple_hash;
+    // In case, there are residual numbers.
+    for k in split_index..split_index + residue {
+        match map.get_mut(&list[k]) {
+            Some(val) => {
+                *val += 1;
+            }
 
-        let ordered_table: &mut Vec<Row<T>> = &mut self.ordered_table;
-
-        for i in list {
-            match couple_hash.get_mut(i) {
-                Some(val) => {
-                    *val += 1;
-                }
-
-                None => {
-                    couple_hash.insert((*i).clone(), 1);
-                    ordered_table.push(Row::new((*i).clone(), 0))
-                }
+            None => {
+                map.insert(list[k], 1);
             }
         }
-
-        self
     }
 
-    /// When we iterate over the hash, the elements might come unordered.
-    /// So we update their order in this method in a third list namingly
-    /// frequency table.
-    pub fn update_order(&mut self) -> &Self {
-        let couple_hash: &mut HashMap<T, u32> = &mut self.couple_hash;
-
-        let ordered_table: &mut Vec<Row<T>> = &mut self.ordered_table;
-
-        for row in ordered_table.iter_mut() {
-            let val: &u32 = couple_hash.get(&row.element).unwrap();
-            row.frequency += *val;
-        }
-
-        self
-    }
-
-    /// Finally we need to chain `hash_couple` and `update_order` with
-    /// `result` method to get final result.
-    ///
-    /// # Examples
-    /// ```
-    /// use elements_frequency::interface::Elements;
-    /// 
-    /// let list = vec![-5, 11, 4, 4, -5, -7, 11];
-    ///
-    /// let mut elements = Elements::new(&list);
-    /// 
-    /// let frequency_table = elements.hash_couple().update_order().result();
-    /// ```
-    pub fn result(&self) -> &Vec<Row<T>> {
-        let ordered_table: &Vec<Row<T>> = &self.ordered_table;
-        ordered_table
-    }
+    map
 }
