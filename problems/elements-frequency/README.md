@@ -1,11 +1,13 @@
 Finds frequency of the unique elements present in the list.
 
-### Update: Multithreading.
+### Update: Using Mutex<T> instead of Arc<Mutex<T>>.
+
+Arc  has some runtime performance cost. Usage of Arc is dropped from now on.
 
 ~~This lbrary can work with any types that implement `Clone`.~~
 ~~So it is expected to work with Strings, slices, integers etc.~~
 
-Not anymore. From now, it works with all types that implement `Copy`. Also it became kinda bloated, thi small crate has got a dependency, `crossbeam`.
+Not anymore. From now, it works with all types that implement `Copy`. Also it became kinda bloated, this small crate has got a dependency, `crossbeam`.
 
 Good news is, now its multithreaded, and you can decided how many threads it will use. the **`find_frequency`** function takes **`2`** arguments, the first one is the array or vector containing elements, and second argument is the number of threads.
 

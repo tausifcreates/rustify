@@ -1,6 +1,6 @@
 [package]
 name = "elements-frequency"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2018"
 description = "Finds the frequency of elements in a list."
 documentation = "https://docs.rs/elements_frequency"
