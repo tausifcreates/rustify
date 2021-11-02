@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
 	use stacked_sandwich::interface::equal_is_bigger;
-	
+
 	fn setup(
 		sandwich: &[i32],
 		cols: usize,
@@ -14,8 +14,8 @@ mod tests {
 		assert_eq!(expect.len(), result.len());
 		for i in 0..result.len() {
 			assert_eq!(expect[i].0, result[i].row);
-			assert_eq!(expect[i].1, result[i].col_start);
-			assert_eq!(expect[i].2, result[i].col_end);
+			assert_eq!(expect[i].1, result[i].leftbound_col);
+			assert_eq!(expect[i].2, result[i].rightbound_col);
 		}
 	}
 
@@ -56,6 +56,16 @@ mod tests {
 		let cols = 5;
 		let search_element = 5;
 		let expect = [(0, 1, 4), (1, 1, 3), (2, 0, 0)];
+		setup(&sandwich, cols, rows, search_element, &expect);
+	}
+
+	#[test]
+	fn test5() {
+		let sandwich = [7, 7, 7, 7];
+		let rows = 1;
+		let cols = 4;
+		let search_element = 7;
+		let expect = [(0, 0, 3)];
 		setup(&sandwich, cols, rows, search_element, &expect);
 	}
 }
