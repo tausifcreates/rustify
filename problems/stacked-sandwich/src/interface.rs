@@ -72,13 +72,12 @@ pub fn march_left(
 
 		// Marching backwards until you meet the starting point of this row
 		while row_start_idx < left_marching_idx {
-			match sandwich[left_marching_idx].cmp(&sandwich[left_marching_idx - 1]) {
-				// When the previous element is smaller, quit
-				Ordering::Greater => break,
-
-				// Otherwise, retreat one idx in this row
-				_ => left_marching_idx -= 1,
+			// When the previous element is smaller, quit
+			if sandwich[left_marching_idx] > sandwich[left_marching_idx - 1] {
+				break;
 			}
+			// Otherwise, retreat one idx in this row
+			left_marching_idx -= 1;
 		}
 
 		// When marching completes, calculate leftbound position for this row
