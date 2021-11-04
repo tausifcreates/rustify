@@ -1,6 +1,6 @@
 [package]
 name = "stacked-sandwich"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 description = "Find all occurances of a number in a matrix; in square root of linear time!"
 documentation = "https://docs.rs/stacked_sandwich"

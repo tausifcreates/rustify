@@ -1,10 +1,11 @@
 ### Find all occurances of an element in row-wise and column-wise sorted matrix.
 
-Time complexity: **`O(m+n)`** where, m=number of columns, n=number of rows.
-Space complexity: **`O(m+n)`**
+**Time complexity:** **`O(m+n)`** where, m=number of columns, n=number of rows.
+
+**Space complexity:** **`O(m+n)`**
 
 #### What is special about this crate
-The time complexity is not even linear, it's almost the square root of liner time complexity. The linear time complexity is **`O(m*n)`**.
+The time complexity is not even linear, it's almost the square root of liner time complexity. The linear time complexity is **`O(m x n)`**.
 
 #### How do you use it?
 You don't pass a matrix! Rather you pass an array(or a vec) that emulates a 2D matrix. How? Count each index of that collection as (X + nY).
