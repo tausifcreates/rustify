@@ -55,9 +55,9 @@ fn main() {
 So, How does the result look like? Somewhat like this:
 ```rs
 [
- OccurancePattern { row: 0, leftbound_col: 1, rightbound_col: 4 },
- OccurancePattern { row: 1, leftbound_col: 1, rightbound_col: 3 },
- OccurancePattern { row: 2, leftbound_col: 0, rightbound_col: 0 }
+ OccurancePattern { row: 0, leftbound_col: 3, rightbound_col: 3 },
+ OccurancePattern { row: 1, leftbound_col: 3, rightbound_col: 3 },
+ OccurancePattern { row: 2, leftbound_col: 0, rightbound_col: 1 }
 ]
 ```
 Rows and Columns are both indexed from 0. That means, 1st row is the 0th row, 1st column is 0th column. Now take your original matrix and match it with the result!
