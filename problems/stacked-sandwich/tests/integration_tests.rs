@@ -20,7 +20,7 @@ mod tests {
 	}
 
 	#[test]
-	fn all_pos() {
+	fn test1() {
 		let sandwich = [1, 7, 7, 7, 7, 2, 7, 7, 7, 8, 7, 7, 10, 11, 13];
 		let rows = 3;
 		let cols = 5;
@@ -66,6 +66,16 @@ mod tests {
 		let cols = 4;
 		let search_element = 7;
 		let expect = [(0, 0, 3)];
+		setup(&sandwich, cols, rows, search_element, &expect);
+	}
+
+	#[test]
+	fn test6() {
+		let sandwich = [1, 2, 4, 5, 3, 4, 4, 5, 5, 5, 8, 9];
+		let rows = 3;
+		let cols = 4;
+		let search_element = 5;
+		let expect = [(0, 3, 3), (1, 3, 3), (2, 0, 1)];
 		setup(&sandwich, cols, rows, search_element, &expect);
 	}
 }

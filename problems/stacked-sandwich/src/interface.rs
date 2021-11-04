@@ -7,6 +7,16 @@ pub struct OccurancePattern {
 	pub rightbound_col: usize,
 }
 
+
+/// ```
+/// use stacked_sandwich::interface::equal_is_bigger;
+///
+/// let sandwich = [1, 2, 4, 5,  3, 4, 4, 5,  5, 5, 8, 9];
+/// let rows = 3;
+/// let cols = 4;
+/// let search_element = 5;
+/// let result = equal_is_bigger(&sandwich, cols, rows, search_element);
+/// ```
 pub fn equal_is_bigger(
 	sandwich: &[i32],
 	cols: usize,
@@ -62,20 +72,19 @@ pub fn march_left(
 		let prev_leftbound_row: usize = left_marching_idx / cols;
 		let prev_leftbound_col: usize = left_marching_idx - prev_leftbound_row * cols;
 
-		match op_idx.rightbound_col.cmp(&prev_leftbound_col) {
+		if op_idx.rightbound_col < prev_leftbound_col {
 			// Set march point on this rows rightbound column
-			Ordering::Less => left_marching_idx = row_start_idx + op_idx.rightbound_col,
-
+			left_marching_idx = row_start_idx + op_idx.rightbound_col;
+		} else {
 			// Align to previous rows leftbound column & set march point
-			_ => left_marching_idx = row_start_idx + prev_leftbound_col,
+			left_marching_idx = row_start_idx + prev_leftbound_col;
 		}
 
 		// Marching backwards until you meet the starting point of this row
-		while row_start_idx < left_marching_idx {
-			// When the previous element is smaller, quit
-			if sandwich[left_marching_idx] > sandwich[left_marching_idx - 1] {
-				break;
-			}
+		// When the previous element is smaller, quit
+		while row_start_idx < left_marching_idx
+			&& sandwich[left_marching_idx] == sandwich[left_marching_idx - 1]
+		{
 			// Otherwise, retreat one idx in this row
 			left_marching_idx -= 1;
 		}

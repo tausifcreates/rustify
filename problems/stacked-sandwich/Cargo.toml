@@ -1,7 +1,13 @@
 [package]
 name = "stacked-sandwich"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
+description = "Find all occurances of a number in a matrix; in square root of linear time!"
+documentation = "https://docs.rs/stacked_sandwich"
+readme = "README.md"
+repository = "https://codeberg.org/ino/rusty-algos/src/branch/master/problems/stacked-sandwich"
+license = "MIT"
+keywords = ["algorithm", "array", "matrix"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
