@@ -1,7 +1,13 @@
 [package]
 name = "between-us"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
+description = "Finds two most distant smaller and bigger numbers."
+documentation = "https://docs.rs/between_us"
+readme = "README.md"
+repository = "https://codeberg.org/ino/rusty-algos/src/branch/master/problems/between-us"
+license = "MIT"
+keywords = ["algorithm", "array", "distance", "maximum"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

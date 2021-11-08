@@ -1,5 +1,13 @@
 use std::cmp::Ordering;
-
+///```
+/// use between_us::interface::find_distance;
+///
+/// let list = [5, 3, 7, 1, 6, 8, 4];
+///
+/// let result = find_distance(&list);
+/// 
+/// println!("{:?}", result);
+/// ```
 pub fn find_distance(list: &[u32]) -> Option<usize> {
 	let mut smaller_idx_list: Vec<usize> = Vec::with_capacity(list.len());
 
