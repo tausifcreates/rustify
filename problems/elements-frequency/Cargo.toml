@@ -1,15 +1,17 @@
 [package]
 name = "elements-frequency"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2018"
 description = "Finds the frequency of elements in a list."
 documentation = "https://docs.rs/elements_frequency"
 readme = "README.md"
 repository = "https://codeberg.org/ino/rusty-algos/src/branch/master/problems/elements-frequency"
 license = "MIT"
-keywords = ["algorithm", "array"]
+keywords = ["algorithm", "array", "frequency"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-crossbeam-utils = "0.8"
+num_cpus = "1.8.0"
+twox-hash = "1.6.1"
+rayon-core = "1.9.0"

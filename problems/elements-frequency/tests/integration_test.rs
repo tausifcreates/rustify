@@ -5,11 +5,11 @@ use std::{fmt::Debug, hash::Hash, marker::Sync};
 mod tests {
     use super::*;
 
-    fn setup<T>(list: &[T], expected: &[(T, u32)])
+    fn setup<T>(list: &[T], expected: &[(T, u64)])
     where
         T: Copy + Eq + Hash + Debug + Sync + Send,
     {
-        let frequency_table = frequency_finder(list, 6);
+        let frequency_table = frequency_finder(list);
 
         println!("{:?}", frequency_table);
 
