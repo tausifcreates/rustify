@@ -1,40 +1,5 @@
-use std::convert::TryInto;
+use std::cmp::Ordering;
 use std::ops::{Add, Sub};
-
-// `distance ≥ | sum of any pair - desired sum |`
-pub fn find_distance<T>(list: &mut [T], desired_sum: T) -> (f64, f64)
-where
-    T: Copy + Add<Output = T> + Sub<Output = T> + TryInto<f64>,
-{
-    let len: usize = list.len();
-
-    let highest_sum: f64;
-
-    match (list[len - 1] + list[len - 2]).try_into() {
-        Ok(val) => highest_sum = val,
-        Err(_) => panic!("Could not convert types!"),
-    }
-
-    let lowest_sum: f64;
-
-    match (list[0] + list[1]).try_into() {
-        Ok(val) => lowest_sum = val,
-        Err(_) => panic!("Could not convert types!"),
-    }
-
-    let avg_sum = (highest_sum + lowest_sum) / 2.0;
-
-    match desired_sum.try_into() {
-        Ok(val) => {
-            if avg_sum - val <= 0.0 {
-                return (val - lowest_sum, val);
-            }
-
-            return (highest_sum - val, val);
-        }
-        Err(_) => panic!("Could not convert types!"),
-    }
-}
 
 // This method runs a loop and tries to minimize the distance
 // for every comparison between current distance and sum of
@@ -43,57 +8,44 @@ where
 /// ```
 /// use closest_sum_pair::interface::find_pair;
 ///
-/// fn main() {
-///    let mut list = [-2, -4, -7, -2, -5, -13, -7];
-///   
-///    list.sort();
+/// let mut list = [-2, -4, -7, -2, -5, -13, -7];
 ///
-///    let desired_sum = -1;
+/// list.sort();
 ///
-///    let pair = find_pair(&mut list, desired_sum);
+/// let desired_sum = -1;
 ///
-///    println!("pair {:?}", pair) // (-2, -2)
-/// }
+/// let pair = find_pair(&mut list, desired_sum);
 /// ```
-pub fn find_pair<U>(list: &mut [U], desired_sum: U) -> (U, U)
+pub fn find_pair<U>(list: &[U], desired_sum: U) -> (U, U)
 where
-    U: Copy + Add<Output = U> + Sub<Output = U> + TryInto<f64>,
+	U: Copy + Add<Output = U> + Sub<Output = U> + Into<f64>,
 {
-    let (mut init_distance, conv_desired_sum) = find_distance(list, desired_sum);
+	let desired_sum: f64 = desired_sum.into();
 
-    let mut pair: Option<(U, U)> = None;
+	let mut left_bound: usize = 0;
 
-    let len: usize = list.len();
+	let mut right_bound: usize = list.len() - 1;
 
-    let mut left_index: usize = 0;
+	let mut pair: Option<(U, U)> = Some((list[left_bound], list[right_bound]));
 
-    let mut right_index: usize = len - 1;
+	let mut init_distance = (list[left_bound] + list[right_bound]).into();
 
-    for _ in 0..(len - 2) + 1 {
-        let temp_sum = list[left_index] + list[right_index];
+	for _ in 0..(list.len() - 2) + 1 {
+		let this_pair_sum: U = list[left_bound] + list[right_bound];
 
-        let temp_distance: f64;
+		let this_distance: f64 = desired_sum - this_pair_sum.into();
 
-        match temp_sum.try_into() {
-            Ok(val) => {
-                temp_distance = conv_desired_sum - val;
-            }
-            Err(_) => panic!("Could not convert types!"),
-        }
+		if this_distance.abs() < init_distance.abs() {
+			init_distance = this_distance;
+			pair = Some((list[left_bound], list[right_bound]));
+		}
 
-        if temp_distance.abs() < init_distance.abs() {
-            init_distance = temp_distance;
-            pair = Some((list[left_index], list[right_index]));
-        }
+		match this_distance.partial_cmp(&0.0).unwrap() {
+			Ordering::Greater => left_bound += 1,
+			Ordering::Less => right_bound -= 1,
+			Ordering::Equal => break,
+		}
+	}
 
-        if temp_distance > 0.0 {
-            left_index += 1;
-        } else if temp_distance < 0.0 {
-            right_index -= 1;
-        } else {
-            break;
-        }
-    }
-
-    pair.unwrap()
+	pair.unwrap()
 }

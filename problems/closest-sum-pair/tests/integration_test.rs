@@ -1,5 +1,4 @@
 use closest_sum_pair::interface::find_pair;
-use std::convert::TryInto;
 use std::ops::{Add, Sub};
 
 #[cfg(test)]
@@ -10,7 +9,7 @@ mod tests {
 
     fn setup<X>(list: &mut [X], desired_sum: X, expected_pair: (X, X))
     where
-        X: Copy + PartialOrd + Debug + Add<Output = X> + Sub<Output = X> + TryInto<f64>,
+        X: Copy + PartialOrd + Debug + Add<Output = X> + Sub<Output = X> + Into<f64>,
     {
         list.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
