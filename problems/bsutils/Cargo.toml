@@ -2,8 +2,13 @@
 name = "bsutils"
 version = "0.1.0"
 edition = "2021"
+description = "Binary search utilities with efficiency"
+documentation = "https://docs.rs/bsutils"
+readme = "README.md"
+repository = "https://codeberg.org/ino/rusty-algos/src/branch/master/problems/bsutils"
+license = "MIT"
+keywords = ["algorithm", "array", "frequency"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rayon = "1.5.1"

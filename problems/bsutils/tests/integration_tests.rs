@@ -1,10 +1,10 @@
 #[cfg(test)]
 mod tests {
-    use bsutils::interface::fnl;
+    use bsutils::interface::first_last_idxs;
 
     #[allow(unused_variables)]
     fn setup(list: &[i32], given: i32, test_against: (Option<usize>, Option<usize>)) {
-        let (f_idx, l_idx) = fnl(list, given);
+        let (f_idx, l_idx) = first_last_idxs(list, given);
         println!("{:?}, {:?}", f_idx, l_idx);
         assert_eq!(test_against.0, f_idx);
         assert_eq!(test_against.1, l_idx);
