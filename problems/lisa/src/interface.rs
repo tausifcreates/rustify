@@ -1,5 +1,15 @@
 use std::collections::VecDeque;
 
+ /// # Example
+ /// ```
+ /// use lisa::interface::find_lis;
+ ///
+ /// let slice = [3, 10, 2, 1, 20];
+ /// let lis = find_lis(&slice);
+ ///
+ /// println!("{:?}", lis);
+ /// ```
+
 pub fn find_lis<T>(slice: &[T]) -> VecDeque<T>
 where
 	T: PartialOrd + Copy,
