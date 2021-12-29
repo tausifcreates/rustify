@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 description = "lisa - longest increasing subsequence algorithm[O(nlogn)]"
 documentation = "https://docs.rs/lisa"
-repository = ""
+repository = "https://github.com/LittleTasteOfHeaven/rusty-algos/tree/master/problems/lisa"
 license = "MIT"
 keywords = ["algorithm", "longest-increasing-subsequence"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
