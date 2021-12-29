@@ -1,6 +1,9 @@
 use std::collections::VecDeque;
 
-pub fn find_lis(slice: &[i32]) -> VecDeque<i32> {
+pub fn find_lis<T>(slice: &[T]) -> VecDeque<T>
+where
+	T: PartialOrd + Copy,
+{
 	// `head_idxs` -> increasing subsequence head idxs
 	let mut head_idxs: Vec<usize> = vec![0];
 
@@ -10,10 +13,10 @@ pub fn find_lis(slice: &[i32]) -> VecDeque<i32> {
 	// update if a new item is appended to `head_idxs`.
 	let mut super_head = 0;
 
-	let mut lis: VecDeque<i32> = VecDeque::new();
+	let mut lis: VecDeque<T> = VecDeque::new();
 
-	for idx in 1..slice.len() {
-		let res = lower_bound(slice, &head_idxs, slice[idx]);
+	for (idx, item) in slice.iter().skip(1).enumerate() {
+		let res = lower_bound(slice, &head_idxs, *item);
 
 		match res {
 			Some(replace_idx) => {
@@ -26,6 +29,8 @@ pub fn find_lis(slice: &[i32]) -> VecDeque<i32> {
 					symlinks.push(Some(prev_head_idx));
 				}
 
+				// If the new subseq is equal len of prev longest
+				// subseq, update `super_head` to head of new subseq
 				if replace_idx == head_idxs.len() - 1 {
 					super_head = symlinks.len() - 1;
 				}
@@ -54,8 +59,11 @@ pub fn find_lis(slice: &[i32]) -> VecDeque<i32> {
 
 // returns idx of a value not less than `given`. If such value not
 // exists, returns `None`.
-fn lower_bound(slice: &[i32], end_pos: &[usize], given: i32) -> Option<usize> {
-	let slice_len = end_pos.len();
+fn lower_bound<T>(slice: &[T], head_idxs: &[usize], given: T) -> Option<usize>
+where
+	T: PartialOrd,
+{
+	let slice_len = head_idxs.len();
 	let mut left_idx: usize = 0;
 	let mut right_idx: usize = slice_len - 1;
 
@@ -65,16 +73,16 @@ fn lower_bound(slice: &[i32], end_pos: &[usize], given: i32) -> Option<usize> {
 	for _ in 1..=turns {
 		let mid_idx = (left_idx + right_idx) / 2;
 
-		if slice[end_pos[mid_idx]] >= given {
+		if slice[head_idxs[mid_idx]] >= given {
 			right_idx = mid_idx;
 		} else {
 			left_idx = mid_idx;
 		}
 	}
 
-	if slice[end_pos[left_idx]] >= given {
+	if slice[head_idxs[left_idx]] >= given {
 		Some(left_idx)
-	} else if slice[end_pos[right_idx]] >= given {
+	} else if slice[head_idxs[right_idx]] >= given {
 		Some(right_idx)
 	} else {
 		None
