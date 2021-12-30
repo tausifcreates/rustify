@@ -1,8 +1,8 @@
 [package]
 name = "lisa"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
-description = "lisa - longest increasing subsequence algorithm[O(nlogn)]"
+description = "lisa - longest increasing subsequence algorithm [ O( nlogn ) ]"
 documentation = "https://docs.rs/lisa"
 repository = "https://github.com/LittleTasteOfHeaven/rusty-algos/tree/master/problems/lisa"
 license = "MIT"
