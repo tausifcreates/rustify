@@ -52,11 +52,13 @@ pub fn compute_lcs(slice_a: &[char], slice_b: &[char]) {
 		}
 
 		if let Some(match_idx) = last_match_idx {
+			head_idxs.push(match_idx);
+			
 			let link = Link {
 				prev_head: Some(*head_idxs.last().unwrap()),
 				prev_head_idx: Some(head_idxs.len() - 1),
 			};
-			head_idxs.push(match_idx);
+
 			match row_data[match_idx] {
 				Some(col) => {
 					let next_col = col + 1;
@@ -73,56 +75,34 @@ pub fn compute_lcs(slice_a: &[char], slice_b: &[char]) {
 
 		// 2nd part: iterate from the beginning of the slice to `end_head`
 		for (a_idx, a_item) in slice_a[0..=end_head].iter().enumerate().rev() {
-			println!("2nd part: a_idx {}", a_idx);
-			let start_idx = a_idx * slice_a.len();
-
 			if a_item == b_item {
-				// If the matching item is greater than last head, do not
-				// calculate lower bound
-				if a_idx > *head_idxs.last().unwrap() {
-					let link = Link {
-						prev_head: Some(*head_idxs.last().unwrap()),
-						prev_head_idx: Some(head_idxs.len() - 1),
-					};
+				let new_head_idx = lower_bound(&head_idxs, a_idx);
 
-					head_idxs.push(a_idx);
-					link_chains[start_idx] = Some(link);
-					row_data[a_idx] = Some(0);
+				if let Some(replace_idx) = new_head_idx {
+					head_idxs[replace_idx] = a_idx;
+					let link: Link;
+					if replace_idx == 0 {
+						link = Link {
+							prev_head: None,
+							prev_head_idx: None,
+						}
+					} else {
+						link = Link {
+							prev_head: Some(head_idxs[replace_idx - 1]),
+							prev_head_idx: Some(replace_idx - 1),
+						};
+					}
 
-					println!("head_idxs {:?}", head_idxs);
-				} else {
-					let new_head_idx = lower_bound(&head_idxs, a_idx);
-
-					if let Some(replace_idx) = new_head_idx {
-						head_idxs[replace_idx] = a_idx;
-
-						println!("head_idxs {:?}", head_idxs);
-
-						let link: Link;
-
-						if replace_idx == 0 {
-							link = Link {
-								prev_head: None,
-								prev_head_idx: None,
-							}
-						} else {
-							link = Link {
-								prev_head: Some(head_idxs[replace_idx - 1]),
-								prev_head_idx: Some(replace_idx - 1),
-							};
+					match row_data[a_idx] {
+						Some(col) => {
+							let next_col = col + 1;
+							link_chains[a_idx * slice_a.len() + next_col] = Some(link);
+							row_data[a_idx] = Some(next_col);
 						}
 
-						match row_data[a_idx] {
-							Some(col) => {
-								let next_col = col + 1;
-								link_chains[start_idx + next_col] = Some(link);
-								row_data[a_idx] = Some(next_col);
-							}
-
-							None => {
-								link_chains[start_idx] = Some(link);
-								row_data[a_idx] = Some(0);
-							}
+						None => {
+							link_chains[a_idx * slice_a.len()] = Some(link);
+							row_data[a_idx] = Some(0);
 						}
 					}
 				}
