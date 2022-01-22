@@ -13,24 +13,27 @@ pub fn compute_lcs(slice_a: &[char], slice_b: &[char]) {
 	// Stores the last occupied column of each row of `link_chains`.
 	let mut row_data: Vec<Option<usize>> = vec![None; slice_a.len()];
 
-	let first_b_item = slice_b.first().unwrap();
+	let mut skip_times = slice_b.len();
 
-	for (a_idx, a_item) in slice_a.iter().enumerate() {
-		if a_item == first_b_item {
-			head_idxs.push(a_idx);
-			let link = Link {
-				prev_head: None,
-				prev_head_idx: None,
-			};
-			row_data[a_idx] = Some(0);
-			link_chains[a_idx * slice_a.len()] = Some(link);
-			break;
+	'outer: for (b_idx, b_item) in slice_b.iter().enumerate() {
+		for (a_idx, a_item) in slice_a.iter().enumerate() {
+			if a_item == b_item {
+				head_idxs.push(a_idx);
+				let link = Link {
+					prev_head: None,
+					prev_head_idx: None,
+				};
+				link_chains[a_idx * slice_a.len()] = Some(link);
+				row_data[a_idx] = Some(0);
+				skip_times = b_idx + 1;
+				break 'outer;
+			}
 		}
 	}
 
 	// Make a full iteration of slice_a for every item of slice_b to
 	// find suitable match
-	for b_item in slice_b.iter().skip(1) {
+	for b_item in slice_b.iter().skip(skip_times) {
 		// todo: end_head might be None if no head is found in
 		// first iteration
 		let end_head = *head_idxs.last().unwrap();
@@ -53,7 +56,7 @@ pub fn compute_lcs(slice_a: &[char], slice_b: &[char]) {
 
 		if let Some(match_idx) = last_match_idx {
 			head_idxs.push(match_idx);
-			
+
 			let link = Link {
 				prev_head: Some(*head_idxs.last().unwrap()),
 				prev_head_idx: Some(head_idxs.len() - 1),
