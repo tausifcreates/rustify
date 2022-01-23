@@ -38,7 +38,7 @@ pub fn compute_lcs(slice_a: &[char], slice_b: &[char]) {
 		// first iteration
 		let end_head = *head_idxs.last().unwrap();
 
-		let mut last_match_idx: Option<usize> = None;
+		let mut first_match_idx: Option<usize> = None;
 
 		// 1st part: iterate from where the last head was found to the end of
 		// `slice_a` in reverse order. In this part, we will travel until we
@@ -46,15 +46,15 @@ pub fn compute_lcs(slice_a: &[char], slice_b: &[char]) {
 		for (a_idx, a_item) in slice_a[end_head + 1..=slice_a.len() - 1]
 			.iter()
 			.enumerate()
-			.rev()
 		{
 			let relative_a_idx = a_idx + end_head + 1;
 			if a_item == b_item {
-				last_match_idx = Some(relative_a_idx)
+				first_match_idx = Some(relative_a_idx);
+				break;
 			}
 		}
 
-		if let Some(match_idx) = last_match_idx {
+		if let Some(match_idx) = first_match_idx {
 			head_idxs.push(match_idx);
 
 			let link = Link {
